@@ -20,7 +20,7 @@ existing_data = load_existing_data(database_filename)
 st.title("Bestellung aufgeben")
 
 # Kunde
-
+kunde = st.text_input("Kundenname")
 
 # Automatisches Einfügen des aktuellen Datums und der Uhrzeit
 current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
