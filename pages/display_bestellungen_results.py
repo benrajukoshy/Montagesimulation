@@ -5,7 +5,7 @@ import pandas as pd
 # Dateiname der Datenbank
 database_filename = "bestellungen_database.json"
 
-def display_werkzeugnis_results():
+def display_bestellungen_results():
     st.title("Bestellungen")
 
     # Laden der Werkzeugnisdaten aus der JSON-Datei
