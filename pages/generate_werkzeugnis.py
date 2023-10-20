@@ -36,8 +36,8 @@ last_customer_name = existing_data[-1]["Kunde"] if existing_data else "Bitte Kun
 kunde = st.text_input("Kunde", last_customer_name)
 
 # Automatisches Einfügen des aktuellen Datums und der Uhrzeit
-#current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-current_datetime = datetime.datetime.now()
+current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 st.write(f"Bestellung vom: {current_datetime}")
 
 # Varianten nach Bestellung
