@@ -5,7 +5,7 @@ import pandas as pd
 # Dateiname der Datenbank
 database_filename = "bestellungen_database.json"
 
-def display_bestellungen_results():
+def display_results():
     st.title("Bestellungen")
 
     # Laden der Werkzeugnisdaten aus der JSON-Datei
@@ -23,5 +23,5 @@ def display_bestellungen_results():
     else:
         st.write("Keine Bestellungen vorhanden.")
 
-if __name__ == '__main__':
-    display_bestellungen_results()
+#if __name__ == '__main__':
+ #   display_results()
