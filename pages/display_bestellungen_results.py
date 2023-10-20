@@ -19,7 +19,7 @@ def display_results():
     if bestellungen_data:
         for idx, entry in enumerate(bestellungen_data):
             st.write(f"**Bestellung {idx + 1}**")
-            with st.beta_container():
+            with st.container():
                 st.write("Bestelldatum und Uhrzeit:", entry["Bestelldatum und Uhrzeit"])
                 st.write("Kunde:", entry["Kunde"])
                 st.write("Sonderwunsch:", entry["Sonderwunsch"])
