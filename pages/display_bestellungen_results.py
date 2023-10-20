@@ -24,3 +24,5 @@ def display_results():
         st.write("Keine Bestellungen vorhanden.")
 if __name__ == '__main__':
     display_results()
+if st.button("Bestellungen updaten"):
+   st.experimental_rerun()
