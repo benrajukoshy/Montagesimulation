@@ -49,13 +49,13 @@ sonderwunsch = st.text_input("Sonderwunsch", "")
 if st.button("Bestellung abschicken"):
     
     # Speichern der Bestellinformationen in der Datenbank als separates JSON-Objekt pro Zeile
-    werkzeugnis_info = {
+    bestellungen_info = {
         "Bestelldatum und Uhrzeit": current_datetime,
         "Kunde": kunde,
         "Sonderwunsch": sonderwunsch,
         "Variante nach Bestellung": selected_variants,        
     }
-    existing_data.append(werkzeugnis_info)  # Hinzufügen der neuen Daten zu den vorhandenen Daten
+    existing_data.append(bestellungen_info)  # Hinzufügen der neuen Daten zu den vorhandenen Daten
 
     with open(database_filename, "w") as db:
         for entry in existing_data:
