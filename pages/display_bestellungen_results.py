@@ -23,5 +23,5 @@ def display_results():
     else:
         st.write("Keine Bestellungen vorhanden.")
 
-#if __name__ == '__main__':
- #   display_results()
+if __name__ == '__main__':
+display_results()
