@@ -9,7 +9,7 @@ def get_highest_werkzeugnis_num(data):
     return max(int(entry["Werkzeugnisnummer"]) for entry in data)
 
 # Datenbank-Datei für Werkzeugnisinformationen im JSON-Format
-database_filename = "werkzeugnis_database.json"
+werkzeugnis_database_filename = "werkzeugnis_database.json"
 
 # Laden der bestehenden Werkzeugnisdaten aus der JSON-Datei
 def load_existing_data(filename):
@@ -20,40 +20,22 @@ def load_existing_data(filename):
     except (FileNotFoundError, json.JSONDecodeError):
         return []
 
-existing_data = load_existing_data(database_filename)
+existing_data = load_existing_data(werkzeugnis_database_filename)
 
 # Seitentitel
 st.title("Werkzeugnis")
 
-# Werkszeugnisnummer
-highest_werkzeugnis_num = get_highest_werkzeugnis_num(existing_data)
-werkzeugnis_nr = highest_werkzeugnis_num + 1
-st.write(f"Werkszeugnis Nr.: {werkzeugnis_nr}")
+# Automatisches Einfügen des ausgewählten Bestelldatums und der Uhrzeit
+bestellungen_database_filename = "bestellungen_database.json"
+bestellungen_data = load_existing_data(bestellungen_database_filename)
+selected_datetime = st.selectbox("Bestellung:", bestellungen_data)
+current_datetime = selected_datetime if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+st.write(f"Bestellung vom: {current_datetime}")
 
 # Kunde
 # Versuche, den letzten Kundenname aus der Datenbank zu laden
 last_customer_name = existing_data[-1]["Kunde"] if existing_data else "Bitte Kundennamen eingeben"
 kunde = st.text_input("Kunde", last_customer_name)
-
-# Automatisches Einfügen des aktuellen Datums und der Uhrzeit
-current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-st.write(f"Bestellung vom: {current_datetime}")
-
-# Varianten nach Bestellung
-st.write("Variante nach Bestellung:")
-varianten = ["Führerhaus", "Sidepipes", "Container 1", "Container 2", "Container 3", "Container 4"]
-selected_variants = {}
-
-for variante in varianten:
-    st.write(variante)
-    farben = ["Rot", "Grün", "Gelb", "Blau"]
-    selected_color = st.radio(f"Auswahl {variante}", farben)
-    if selected_color:
-        selected_variants[variante] = selected_color
-
-# Sonderwunsch
-sonderwunsch = st.text_input("Sonderwunsch", "")
 
 # Qualitätsprüfung
 st.write("Qualitätsprüfung:")
@@ -69,19 +51,15 @@ for pruefung in pruefungen:
 
 # Schaltfläche, um das Werkzeugnis zu generieren
 if st.button("Werkzeugnis generieren"):
-    
     # Speichern der Werkzeugnisinformationen in der Datenbank als separates JSON-Objekt pro Zeile
     werkzeugnis_info = {
-        "Werkzeugnisnummer": werkzeugnis_nr,
-        "Ihre Bestellung": current_datetime,
+        "Bestelldatum": selected_datetime,
         "Kunde": kunde,
-        "Sonderwunsch": sonderwunsch,
-        "Variante nach Bestellung": selected_variants,
         "Qualitätsprüfung": selected_quality,
     }
     existing_data.append(werkzeugnis_info)  # Hinzufügen der neuen Daten zu den vorhandenen Daten
 
-    with open(database_filename, "w") as db:
+    with open(werkzeugnis_database_filename, "w") as db:
         for entry in existing_data:
             db.write(json.dumps(entry) + "\n")
 
