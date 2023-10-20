@@ -2,12 +2,6 @@ import streamlit as st
 import datetime
 import json
 
-# Funktion zum Ermitteln der höchsten bisher verwendeten Bestellnummer
-def get_highest_werkzeugnis_num(data):
-    if not data:
-        return 0
-    return max(int(entry["Bestellnummer"]) for entry in data)
-
 # Datenbank-Datei für Werkzeugnisinformationen im JSON-Format
 database_filename = "bestellungen_database.json"
 
@@ -24,11 +18,6 @@ existing_data = load_existing_data(database_filename)
 
 # Seitentitel
 st.title("Bestellung aufgeben")
-
-# Werkszeugnisnummer
-highest_bestellnummer_num = get_highest_bestellnummer_num(existing_data)
-bestellnummer_nr = highest_bestellnummer_num + 1
-st.write(f"Bestellnummer.: {bestellnummer_nr}")
 
 # Kunde
 # Versuche, den letzten Kundenname aus der Datenbank zu laden
@@ -63,7 +52,6 @@ if st.button("Bestellung abschicken"):
     
     # Speichern der Bestellinformationen in der Datenbank als separates JSON-Objekt pro Zeile
     werkzeugnis_info = {
-        "Werkzeugnisnummer": bestellnummer_nr,
         "Bestelldatum und Uhrzeit": current_datetime,
         "Kunde": kunde,
         "Sonderwunsch": sonderwunsch,
