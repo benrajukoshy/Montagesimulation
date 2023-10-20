@@ -13,7 +13,7 @@ def display_werkzeugnis_results():
     with open(database_filename, "r") as db:
         for line in db:
             bestellungen_info = json.loads(line)
-            werkzeugnis_data.append(bestellungen_info)
+            bestellungen_data.append(bestellungen_info)
 
     # Wenn Daten vorhanden sind, diese in einer Tabelle anzeigen
     if bestellungen_data:
@@ -24,4 +24,4 @@ def display_werkzeugnis_results():
         st.write("Keine Bestellungen vorhanden.")
 
 if __name__ == '__main__':
-    display_werkzeugnis_results()
+    display_bestellungen_results()
