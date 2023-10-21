@@ -1,6 +1,8 @@
 import streamlit as st
 import datetime
 import json
+st.markdown("# Bestellen 🛒")
+st.sidebar.markdown("# Bestellen 🛒")
 
 # Datenbank-Datei für Werkzeugnisinformationen im JSON-Format
 database_filename = "bestellungen_database.json"
@@ -17,7 +19,7 @@ def load_existing_data(filename):
 existing_data = load_existing_data(database_filename)
 
 # Seitentitel
-st.title("Bestellung aufgeben")
+#st.title("Bestellung aufgeben")
 
 # Kunde
 kunde = st.text_input("Kundenname")

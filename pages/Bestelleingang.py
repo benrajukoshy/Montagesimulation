@@ -1,12 +1,14 @@
 import streamlit as st
 import json
 import time
+st.markdown("# Bestellungen 🚀")
+st.sidebar.markdown("# Bestellungen 🚀")
 
 # Dateiname der Datenbank
 database_filename = "bestellungen_database.json"
 
 def display_results():
-    st.title("Bestellungen")
+    #st.title("Bestellungen")
 
     # Laden der Werkzeugnisdaten aus der JSON-Datei
     bestellungen_data = []
