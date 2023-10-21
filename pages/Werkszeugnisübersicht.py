@@ -1,12 +1,17 @@
 import streamlit as st
 import json
 import pandas as pd
+# Contents of ~/my_app/main_page.py
+import streamlit as st
+
+st.markdown("# Werkzeugnisübersicht ⭐")
+st.sidebar.markdown("# Werkzeugnisübersicht ⭐")
 
 # Dateiname der Datenbank
 database_filename = "werkzeugnis_database.json"
 
 def display_werkzeugnis_results():
-    st.title("Anzeigen der Werkzeugnis Ergebnisse")
+    
 
     # Laden der Werkzeugnisdaten aus der JSON-Datei
     werkzeugnis_data = []
