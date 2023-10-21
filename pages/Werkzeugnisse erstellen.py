@@ -1,6 +1,10 @@
 import streamlit as st
 import datetime
 import json
+st.markdown("# Werkzeugnis erstellen ✏️")
+st.sidebar.markdown("# Werkzeugniserstellen ✏️")
+
+
 
 # Funktion zum Ermitteln der höchsten bisher verwendeten Werkzeugnisnummer
 def get_highest_werkzeugnis_num(data):
@@ -23,7 +27,7 @@ def load_existing_data(filename):
 existing_data = load_existing_data(werkzeugnis_database_filename)
 
 # Seitentitel
-st.title("Werkzeugnis")
+
 
 # Automatisches Einfügen des ausgewählten Bestelldatums und der Uhrzeit
 bestellungen_database_filename = "bestellungen_database.json"
