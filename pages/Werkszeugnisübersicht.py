@@ -25,8 +25,9 @@ def display_werkzeugnis_results():
         st.write("Werkzeugnisdaten:")
         df = pd.DataFrame(werkzeugnis_data)
         st.dataframe(df)
+        display_werkzeugnis_results()
     else:
         st.write("Keine Werkzeugnisdaten vorhanden.")
 
-if __name__ == '__main__':
-    display_werkzeugnis_results()
+#if __name__ == '__main__':
+ #   display_werkzeugnis_results()
