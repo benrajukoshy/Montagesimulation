@@ -2,7 +2,7 @@
 import streamlit as st
 from PIL import Image
 
-image = Image.open("bilder/layout.png")
+image = Image.open("layout.png")
 st.sidebar.image("https://www.fau.de/files/2021/10/neues-fau-logo-nur-fuer-webmeldung-1024x198.jpg", use_column_width=True)
 
 st.markdown("# Hauptmenü 🏚️")
