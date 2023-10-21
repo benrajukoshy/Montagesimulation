@@ -9,4 +9,4 @@ st.title("Montagesimulation")
 st.write("Im Rahmen eines Praktikums wird die Analyse und Optimierung nach Methoden der schlanken Produktion vermittelt.")
 st.write("Diese Streamlit App dient der digitalen Abbildung von Bestellungen, deren Bearbeitung und Qualitätskontrolle")
 
-st.image("/bilder/Arbeitsstationen.png", caption='Layout mit den Arbeitsstationen')
+st.image("bilder/layout.png", caption='Layout mit den Arbeitsstationen')
