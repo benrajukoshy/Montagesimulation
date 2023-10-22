@@ -36,18 +36,8 @@ def display_results():
         for i in range(10, -1, -1): #time zeit
             timer_text = f"<strong><span style='font-size: 2em;'>Timer: {i} Sekunden</span></strong>"
             timer_placeholder.markdown(timer_text, unsafe_allow_html=True)
-            time.sleep(1)
+            time.sleep(2)
         
-        #play sound after time
-            sample_rate = 44100  # 44100 samples per second
-            seconds = 2  # Note duration of 2 seconds
-            frequency_la = 440  # Our played note will be 440 Hz
-        # Generate array with seconds*sample_rate steps, ranging between 0 and seconds
-            t = np.linspace(0, seconds, seconds * sample_rate, False)
-        # Generate a 440 Hz sine wave
-            note_la = np.sin(frequency_la * t * 2 * np.pi)
-            st.audio(note_la, sample_rate=sample_rate, auto_play=True)
-            time.sleep(4)
         # Timer abgeschlossen
         timer_placeholder.empty()
         st.write("Countdown-Timer abgelaufen.")
