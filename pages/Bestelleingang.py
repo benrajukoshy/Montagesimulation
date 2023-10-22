@@ -46,7 +46,7 @@ def display_results():
         t = np.linspace(0, seconds, seconds * sample_rate, False)
         # Generate a 440 Hz sine wave
         note_la = np.sin(frequency_la * t * 2 * np.pi)
-        st.audio(note_la, sample_rate=sample_rate)
+        st.audio(note_la, sample_rate=sample_rate, auto_play=True)
         time.sleep(4)
         # Timer abgeschlossen
         timer_placeholder.empty()
