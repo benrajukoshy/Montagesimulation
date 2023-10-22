@@ -41,10 +41,11 @@ def display_results():
         # Timer abgeschlossen
         timer_placeholder.empty()
         st.write("Countdown-Timer abgelaufen.")
-        time.sleep(5)
+        time.sleep(2)
         st.experimental_rerun()  # Seite neu laden
     else:
         st.write("Keine Bestellungen vorhanden.")
 
 if __name__ == '__main__':
     display_results()
+st.experimental_rerun()  # Seite neu laden
