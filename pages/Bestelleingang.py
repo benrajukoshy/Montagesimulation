@@ -7,7 +7,7 @@ st.sidebar.markdown("# Bestellungen 🚀")
 
 # Dateiname der Datenbank
 database_filename = "bestellungen_database.json"
-st.empty()
+
 def display_results():
     #st.title("Bestellungen")
 
@@ -22,7 +22,7 @@ def display_results():
     if bestellungen_data:
         for idx, entry in enumerate(bestellungen_data):
             st.write(f"**Bestellung {idx + 1}**")
-            with st.container():
+            with st.empty():
                 st.write("Bestelldatum und Uhrzeit:", entry["Bestelldatum und Uhrzeit"])
                 st.write("Kunde:", entry["Kunde"])
                 st.write("Sonderwunsch:", entry["Sonderwunsch"])
