@@ -37,7 +37,7 @@ def display_results():
             timer_text = f"<strong><span style='font-size: 2em;'>Timer: {i} Sekunden</span></strong>"
             timer_placeholder.markdown(timer_text, unsafe_allow_html=True)
             
-        time.sleep(2)
+            time.sleep(2)
         # Timer abgeschlossen
         timer_placeholder.empty()
         st.write("Countdown-Timer abgelaufen.")
