@@ -7,7 +7,7 @@ st.sidebar.markdown("# Bestellungen 🚀")
 
 # Dateiname der Datenbank
 database_filename = "bestellungen_database.json"
-
+st.empty()
 def display_results():
     #st.title("Bestellungen")
 
