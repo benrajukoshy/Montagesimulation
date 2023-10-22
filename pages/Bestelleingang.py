@@ -34,13 +34,14 @@ def display_results():
         # Countdown-Timer
         timer_placeholder = st.empty()
         for i in range(10, -1, -1): #time zeit
-            timer_text = f"<strong><span style='font-size: 2em;'>Timer: {i} Sekunden</span></strong>"
+            timer_text = f"<strong><span style='font-size: 2em;'>Kundentakt: {i} Sekunden</span></strong>"
             timer_placeholder.markdown(timer_text, unsafe_allow_html=True)
             time.sleep(0.8) # Sleep time to reduce for loop speed
         # Timer abgeschlossen
             timer_placeholder.empty()
         st.write("Countdown-Timer abgelaufen.")
-        time.sleep(2)
+        st.image("https://t3.ftcdn.net/jpg/05/15/14/12/360_F_515141235_MoCb2kgQ3hwrPEjTIWTKkK6TgjDeekI5.jpg", width=300)
+        time.sleep(1)
         
     else:
         st.write("Keine Bestellungen vorhanden.")
