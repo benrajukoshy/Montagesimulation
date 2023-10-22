@@ -39,7 +39,7 @@ def display_results():
             time.sleep(0.8) # Sleep time to reduce for loop speed
         # Timer abgeschlossen
             timer_placeholder.empty()
-        st.write("Countdown-Timer abgelaufen.")
+        st.write("**Sie müssen jetzt ausliefern!")
         time.sleep(1)
         
     else:
