@@ -38,8 +38,8 @@ def display_results():
             timer_placeholder.markdown(timer_text, unsafe_allow_html=True)
             time.sleep(0.8) # Sleep time to reduce for loop speed
         # Timer abgeschlossen
-            timer_placeholder.empty()
-        st.write("**Sie müssen jetzt ausliefern!")
+        timer_placeholder.empty()
+        st.write("**Sie müssen jetzt ausliefern!**")
         time.sleep(1)
         
     else:
