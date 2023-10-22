@@ -36,11 +36,12 @@ def display_results():
         for i in range(10, -1, -1): #time zeit
             timer_text = f"<strong><span style='font-size: 2em;'>Timer: {i} Sekunden</span></strong>"
             timer_placeholder.markdown(timer_text, unsafe_allow_html=True)
-            time.sleep(2)
+            
         
         # Timer abgeschlossen
         timer_placeholder.empty()
         st.write("Countdown-Timer abgelaufen.")
+        time.sleep(5)
         st.experimental_rerun()  # Seite neu laden
     else:
         st.write("Keine Bestellungen vorhanden.")
