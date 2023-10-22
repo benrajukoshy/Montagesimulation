@@ -47,8 +47,7 @@ def display_results():
 
 if __name__ == '__main__':
     display_results()
-timer_placeholder.markdown(timer_text, unsafe_allow_html=True)
 timer_placeholder.empty()
-st.write("<strong><span style='font-size: 2em;'>Sie müssen jetzt ausliefern!</span></strong>")
+st.write("**Sie müssen jetzt ausliefern!")
 time.sleep(1)
 st.experimental_rerun()  # Seite neu laden
