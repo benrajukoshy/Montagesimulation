@@ -39,7 +39,7 @@ def display_results():
             time.sleep(0.8) # Sleep time to reduce for loop speed
         # Timer abgeschlossen
         timer_placeholder.empty()
-        st.write("**Sie müssen jetzt ausliefern!**")
+        st.write("<strong><span style='font-size: 2em;'>Sie müssen jetzt ausliefern!</span></strong>")
         time.sleep(1)
         
     else:
