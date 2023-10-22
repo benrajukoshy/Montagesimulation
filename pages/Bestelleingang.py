@@ -39,7 +39,7 @@ def display_results():
             
         time.sleep(2)
         # Timer abgeschlossen
-            timer_placeholder.empty()
+        timer_placeholder.empty()
         st.write("Countdown-Timer abgelaufen.")
         st.experimental_rerun()  # Seite neu laden
         #st.experimental_rerun()  # Seite neu laden
