@@ -51,6 +51,7 @@ placeholder = st.empty()
 placeholder.text("**Sie müssen jetzt ausliefern!**")
 time.sleep(1)
 placeholder.empty()
+placeholder.text("")
 
 
 st.experimental_rerun()  # Seite neu laden
