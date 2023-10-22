@@ -50,7 +50,7 @@ if __name__ == '__main__':
 placeholder = st.empty()
 placeholder.text("**Sie müssen jetzt ausliefern!**")
 time.sleep(1)
-placehold.empty()
+placeholder.empty()
 
 
 st.experimental_rerun()  # Seite neu laden
