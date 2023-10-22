@@ -49,4 +49,5 @@ if __name__ == '__main__':
     display_results()
 st.write("**Sie müssen jetzt ausliefern!**")
 time.sleep(1)
+st.empty()
 st.experimental_rerun()  # Seite neu laden
