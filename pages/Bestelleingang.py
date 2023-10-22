@@ -38,13 +38,16 @@ def display_results():
             timer_placeholder.markdown(timer_text, unsafe_allow_html=True)
             time.sleep(0.8) # Sleep time to reduce for loop speed
         # Timer abgeschlossen
-        timer_placeholder.empty()
-        st.write("<strong><span style='font-size: 2em;'>Sie müssen jetzt ausliefern!</span></strong>")
-        time.sleep(1)
+            timer_placeholder.empty()
+        #st.write("<strong><span style='font-size: 2em;'>Sie müssen jetzt ausliefern!</span></strong>")
+        #time.sleep(1)
         
     else:
         st.write("Keine Bestellungen vorhanden.")
 
 if __name__ == '__main__':
     display_results()
+timer_placeholder.empty()
+st.write("<strong><span style='font-size: 2em;'>Sie müssen jetzt ausliefern!</span></strong>")
+time.sleep(1)
 st.experimental_rerun()  # Seite neu laden
