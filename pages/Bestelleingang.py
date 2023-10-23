@@ -44,17 +44,9 @@ def display_results():
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
        
 
-        def display_results():
-        # Laden der Werkzeugnisdaten aus der JSON-Datei
-        bestellungen_data = []
-            with open(database_filename, "r") as db:
-                for line in db:
-                    bestellungen_info = json.loads(line)
-                    bestellungen_data.append(bestellungen_info)
-
-        bestellungen_database_filename = "bestellungen_database.json"
-        bestellungen_data = display_results(bestellungen_database_filename)
-        current_Kundentakt = bestellungen_data["Kundentakt"]
+        #bestellungen_database_filename = "bestellungen_database.json"
+        #bestellungen_data = display_results(bestellungen_database_filename)
+        current_Kundentakt = df["Kundentakt"]
         
         st.write("Wenn für bestimmte Bestandteile keine Farbangaben gemacht wurden, dann können diese frei gewählt werden")
         # Countdown-Timer für Kundentakt
