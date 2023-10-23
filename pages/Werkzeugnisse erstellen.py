@@ -64,7 +64,7 @@ for pruefung in pruefungen:
         selected_quality[pruefung] = selected_q
 
 # Schaltfläche, um das Werkzeugnis zu generieren
-if st.button("Werkzeugnis generieren"):
+if st.button("Werkzeugnis wurde generiert und Bestellung zum Kunden verschickt"):
     # Speichern der Werkzeugnisinformationen in der Datenbank als separates JSON-Objekt pro Zeile
     werkzeugnis_info = {
         "Bestelldatum": current_datetime,
