@@ -52,7 +52,8 @@ for i, variante in enumerate(varianten):
 # Sonderwunsch
 sonderwunsch = st.text_input("Sonderwunsch", "")
 
-
+# Kundentakt
+Kundentakt = st.text_input("Kundentakt", "")
 
 
 # Schaltfläche, um Bestellung abzuschicken
@@ -63,7 +64,8 @@ if st.button("Bestellung abschicken"):
         "Bestelldatum und Uhrzeit": current_datetime,
         "Kunde": kunde,
         "Sonderwunsch": sonderwunsch,
-        "Variante nach Bestellung": selected_variants,        
+        "Variante nach Bestellung": selected_variants,
+        "Kundentakt": Kundentakt,        
     }
     existing_data.append(bestellungen_info)  # Hinzufügen der neuen Daten zu den vorhandenen Daten
 

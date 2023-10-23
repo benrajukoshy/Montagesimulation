@@ -25,7 +25,7 @@ def display_results():
     if bestellungen_data:
         # Erstellen eines leeren DataFrames mit den erforderlichen Spalten
         
-        df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit:", "Kunde:", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:"])
+        df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit:", "Kunde:", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:", "Kundentakt"])
         
         for idx, entry in enumerate(bestellungen_data, start=1):
             df.loc[idx] = [
