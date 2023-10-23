@@ -39,7 +39,7 @@ def display_results():
                 entry["Variante nach Bestellung"].get("Container 3", "N/A"),
                 entry["Variante nach Bestellung"].get("Container 4", "N/A")
             ]
-        df.rename(index={0: '1'})
+        
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
         
         st.write("Wenn für bestimmte Bestandteile keine Farbangaben gemacht wurden, dann können diese frei gewählt werden")
