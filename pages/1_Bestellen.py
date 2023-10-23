@@ -46,8 +46,8 @@ for i, variante in enumerate(varianten):
             selected_variants[variante] = selected_color
 
 # Zeige die ausgewählten Varianten und Farben an
-st.write("Ausgewählte Varianten und Farben:")
-st.write(selected_variants)
+#st.write("Ausgewählte Varianten und Farben:")
+#st.write(selected_variants)
 
 # Sonderwunsch
 sonderwunsch = st.text_input("Sonderwunsch", "")
