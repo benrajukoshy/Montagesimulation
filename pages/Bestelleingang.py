@@ -33,20 +33,19 @@ def display_results():
     # Erstellen eines leeren DataFrames mit den erforderlichen Spalten
     df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit", "Kunde", "Sonderwunsch", "Führerhaus", "Sidepipes", "Container 1", "Container 2", "Container 3", "Container 4"])
 
-    for idx, entry in enumerate(bestellungen_data):
-        df.loc[idx] = [
-            entry["Bestelldatum und Uhrzeit"],
-            entry["Kunde"],
-            entry["Sonderwunsch"],
-            entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
-            entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
-            entry["Variante nach Bestellung"].get("Container 1", "N/A"),
-            entry["Variante nach Bestellung"].get("Container 2", "N/A"),
-            entry["Variante nach Bestellung"].get("Container 3", "N/A"),
-            entry["Variante nach Bestellung"].get("Container 4", "N/A")
-        ]
+        for idx, entry in enumerate(bestellungen_data):
+            df.loc[idx] = [
+                entry["Bestelldatum und Uhrzeit"],
+                entry["Kunde"],
+                entry["Sonderwunsch"],
+                entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
+                entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 1", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 2", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 3", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 4", "N/A") ]
 
-    st.dataframe(df.T)  # Transponieren des DataFrames und Anzeigen als Tabelle
+        st.dataframe(df.T)  # Transponieren des DataFrames und Anzeigen als Tabelle
         # Countdown-Timer
         timer_placeholder = st.empty()
         for i in range(10, -1, -1): #time zeit
