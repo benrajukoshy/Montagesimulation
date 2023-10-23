@@ -28,18 +28,26 @@ kunde = st.text_input("Kundenname")
 current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 st.write(f"Bestellung vom: {current_datetime}")
+# Auswahl der Bestellvarianten
+st.write("Bestellvarianten:")
 
-# Auswahl der Bestellvariante
-st.write("Bestellvariante:")
 varianten = ["Führerhaus", "Sidepipes", "Container 1", "Container 2", "Container 3", "Container 4"]
 selected_variants = {}
 
-for variante in varianten:
-    st.write(variante)
-    farben = ["Rot", "Grün", "Gelb", "Blau"]
-    selected_color = st.radio(f"Auswahl {variante}", farben)
-    if selected_color:
-        selected_variants[variante] = selected_color
+# Erstelle 6 Spalten
+columns = st.columns(6)
+
+for i, variante in enumerate(varianten):
+    with columns[i]:
+        st.write(variante)
+        farben = ["Rot", "Grün", "Gelb", "Blau"]
+        selected_color = st.radio(f"Auswahl {variante}", farben)
+        if selected_color:
+            selected_variants[variante] = selected_color
+
+# Zeige die ausgewählten Varianten und Farben an
+st.write("Ausgewählte Varianten und Farben:")
+st.write(selected_variants)
 
 # Sonderwunsch
 sonderwunsch = st.text_input("Sonderwunsch", "")
