@@ -14,4 +14,4 @@ st.write("Diese Streamlit App dient der digitalen Abbildung von Bestellungen, de
 st.header("Montagelayout")
 st.image("layout.JPG",width=300)
 st.header("Link zum Tool")
-st.image("QR.JPG",width=140)
+st.image("QR.jpg",width=140)
