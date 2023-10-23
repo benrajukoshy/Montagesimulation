@@ -29,11 +29,11 @@ def display_werkzeugnis_results():
     if werkzeugnis_data:
         # Erstellen eines leeren DataFrames mit den erforderlichen Spalten
         
-        df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit:", "Kunde:", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:"])
+        df = pd.DataFrame(columns=["Bestelldatum:", "Kunde:", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:"])
         
         for idx, entry in enumerate(werkzeugnis_data, start=1):
             df.loc[idx] = [
-                entry["Bestelldatum und Uhrzeit"],
+                entry["Bestelldatum "],
                 entry["Kunde"],
                 entry["Sonderwunsch"],
                 entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
