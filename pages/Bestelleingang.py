@@ -39,7 +39,7 @@ def display_results():
             ]
 
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
-
+        st.write("Wenn für bestimmte Bestandteile keine Farbangaben gemacht wurden, dann können diese frei gewählt werden")
         # Countdown-Timer
         timer_placeholder = st.empty()
         for i in range(10, -1, -1):
