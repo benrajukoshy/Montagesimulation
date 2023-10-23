@@ -47,7 +47,7 @@ def display_results():
         #bestellungen_database_filename = "bestellungen_database.json"
         #bestellungen_data = display_results(bestellungen_database_filename)
         current_Kundentakt = df["Kundentakt"]
-        
+        current_Kundentakt = current_Kundentakt.astype(int)
         st.write("Wenn für bestimmte Bestandteile keine Farbangaben gemacht wurden, dann können diese frei gewählt werden")
         # Countdown-Timer für Kundentakt
         timer_placeholder = st.empty()
