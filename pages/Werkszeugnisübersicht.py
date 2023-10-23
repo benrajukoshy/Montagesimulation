@@ -34,8 +34,7 @@ def display_werkzeugnis_results():
         for idx, entry in enumerate(werkzeugnis_data, start=1):
             df.loc[idx] = [
                 entry["Bestelldatum"],
-                entry["Kunde"],
-                entry["Sonderwunsch"],
+                entry["Kunde"],                
                 entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
                 entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
                 entry["Variante nach Bestellung"].get("Container 1", "N/A"),
