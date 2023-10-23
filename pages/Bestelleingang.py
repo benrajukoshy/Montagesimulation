@@ -43,12 +43,12 @@ def display_results():
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
         
         st.write("Wenn für bestimmte Bestandteile keine Farbangaben gemacht wurden, dann können diese frei gewählt werden")
-        # Countdown-Timer
+        # Countdown-Timer für Kundentakt
         timer_placeholder = st.empty()
-        for i in range(10, -1, -1):
+        for i in range(60, -1, -1):
             timer_text = f"<strong><span style='font-size: 2em;'>Zeit bis zum Ausliefern (Kundentakt): {i} Sekunden</span></strong>"
             timer_placeholder.markdown(timer_text, unsafe_allow_html=True)
-            time.sleep(0.8)
+            time.sleep(1)
 
         # Timer abgeschlossen
         timer_placeholder.empty()
