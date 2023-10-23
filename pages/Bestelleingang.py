@@ -4,7 +4,7 @@ import time
 import pandas as pd
 
 # Setze Streamlit-Option für die Spaltenbreite
-st.set_option('deprecation.showfileUploaderEncoding', False)
+st.set_option('deprecation.showfileUploaderEncoding', True)
 
 st.markdown("# Bestellungen 🚀")
 st.sidebar.markdown("# Bestellungen 🚀")
