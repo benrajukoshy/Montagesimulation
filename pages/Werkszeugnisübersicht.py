@@ -1,7 +1,6 @@
 import streamlit as st
 import json
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # Setze Streamlit-Option für die Spaltenbreite
 st.set_option('deprecation.showPyplotGlobalUse', False)
