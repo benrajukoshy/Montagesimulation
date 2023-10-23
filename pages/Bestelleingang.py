@@ -1,11 +1,12 @@
-import streamlit as st
+
 import json
 import time
 import pandas as pd
 
 # Setze Streamlit-Option für die Spaltenbreite
-st.set_option('deprecation.showfileUploaderEncoding', True)
-
+st.set_option('deprecation.showPyplotGlobalUse', False)
+st.set_option('deprecation.showfileUploaderEncoding', False)
+import streamlit as st
 st.markdown("# Bestellungen 🚀")
 st.sidebar.markdown("# Bestellungen 🚀")
 
