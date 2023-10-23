@@ -37,7 +37,8 @@ def display_results():
                 entry["Variante nach Bestellung"].get("Container 1", "N/A"),
                 entry["Variante nach Bestellung"].get("Container 2", "N/A"),
                 entry["Variante nach Bestellung"].get("Container 3", "N/A"),
-                entry["Variante nach Bestellung"].get("Container 4", "N/A")
+                entry["Variante nach Bestellung"].get("Container 4", "N/A"),
+                entry["Kundentakt"]
             ]
         
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
