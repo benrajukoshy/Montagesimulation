@@ -35,13 +35,7 @@ def display_werkzeugnis_results():
             df.loc[idx] = [
                 entry["Bestelldatum"],
                 entry["Kunde"],                
-                entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
-                entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
-                entry["Variante nach Bestellung"].get("Container 1", "N/A"),
-                entry["Variante nach Bestellung"].get("Container 2", "N/A"),
-                entry["Variante nach Bestellung"].get("Container 3", "N/A"),
-                entry["Variante nach Bestellung"].get("Container 4", "N/A")
-            ]
+                entry["Variante nach Bestellung"].get("Qualitätsprüfung", "N/A")]
         
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
         
