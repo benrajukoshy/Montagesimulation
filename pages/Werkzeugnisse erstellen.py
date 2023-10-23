@@ -35,7 +35,7 @@ selected_datetime = st.selectbox("Bestellung:", bestellungen_data)
 current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 current_Kunde = selected_datetime["Kunde"]
 current_Sonderwunsch = selected_datetime["Sonderwunsch"]
-current_Varianten = selected_datetime["Varianten"]
+current_Varianten = selected_datetime["Variante nach Bestellung"]
 st.write(f"Bestellung vom: {current_datetime}")
 
 # Kundenname
