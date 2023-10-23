@@ -33,11 +33,12 @@ bestellungen_database_filename = "bestellungen_database.json"
 bestellungen_data = load_existing_data(bestellungen_database_filename)
 selected_datetime = st.selectbox("Bestellung:", bestellungen_data)
 current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+current_Kunde = selected_datetime["Kunde"]
 st.write(f"Bestellung vom: {current_datetime}")
 
 # Kundenname
 last_customer_name = existing_data[-1]["Kunde"] if existing_data else "Bitte Kundennamen eingeben"
-kunde = st.text_input("Kunde", last_customer_name)
+kunde = st.text_input("Kunde", current_Kunde)
 
 # Weitere Elemente
 st.write("Weitere Elemente:")
