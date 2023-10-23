@@ -24,7 +24,7 @@ def display_results():
     # Wenn Daten vorhanden sind, diese in einer Tabelle anzeigen
     if bestellungen_data:
         # Erstellen eines leeren DataFrames mit den erforderlichen Spalten
-        df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit", "Kunde", "Sonderwunsch", "Führerhaus", "Sidepipes", "Container 1", "Container 2", "Container 3", "Container 4"])
+        df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit:", "Kunde:", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:"])
         for idx, entry in enumerate(bestellungen_data):
             df.loc[idx] = [
                 entry["Bestelldatum und Uhrzeit"],
@@ -37,7 +37,7 @@ def display_results():
                 entry["Variante nach Bestellung"].get("Container 3", "N/A"),
                 entry["Variante nach Bestellung"].get("Container 4", "N/A")
             ]
-
+        df.rename(index={0: '1'})
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
         st.write("Wenn für bestimmte Bestandteile keine Farbangaben gemacht wurden, dann können diese frei gewählt werden")
         # Countdown-Timer
