@@ -44,6 +44,7 @@ kunde = st.text_input("Kunde", current_Kunde)
 
 # Weitere Elemente
 st.write("Varianten:")
+st.write("Kundenvariante:", current_Varianten)
 sonderwunsch = st.text_input("Sonderwunsch", current_Sonderwunsch)
 
 
