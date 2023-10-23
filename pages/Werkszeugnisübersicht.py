@@ -24,8 +24,10 @@ def display_werkzeugnis_results():
         idx = 1  # Startindex
 
         for entry in werkzeugnis_data:
+            # Nur "Bestelldatum und Uhrzeit" aus dem JSON-Format extrahieren
+            bestelldatum_uhrzeit = entry["Bestelldatum und Uhrzeit"]
             df.loc[idx] = [
-                entry["Bestelldatum"],
+                bestelldatum_uhrzeit,
                 entry["Kunde"]
             ]
             idx += 1  # Inkrementiere den Index für jede Zeile
@@ -37,4 +39,3 @@ def display_werkzeugnis_results():
 
 if __name__ == '__main__':
     display_werkzeugnis_results()
-
