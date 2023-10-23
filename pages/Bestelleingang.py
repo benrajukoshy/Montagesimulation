@@ -19,7 +19,7 @@ def display_results():
             bestellungen_data.append(bestellungen_info)
 
     # Wenn Daten vorhanden sind, diese in einer Tabelle anzeigen
-    #if bestellungen_data:
+    if bestellungen_data:
     #    for idx, entry in enumerate(bestellungen_data):
     #        st.write(f"**Bestellung {idx + 1}**")
     #        with st.container():
@@ -32,7 +32,7 @@ def display_results():
     #        st.write("")  # Neue Zeile für die nächste Bestellung
     # Erstellen eines leeren DataFrames mit den erforderlichen Spalten
         df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit", "Kunde", "Sonderwunsch", "Führerhaus", "Sidepipes", "Container 1", "Container 2", "Container 3", "Container 4"])
-        for idx, entry in enumerate(bestellungen_data):
+          for idx, entry in enumerate(bestellungen_data):
             df.loc[idx] = [
                 entry["Bestelldatum und Uhrzeit"],
                 entry["Kunde"],
@@ -44,7 +44,7 @@ def display_results():
                 entry["Variante nach Bestellung"].get("Container 3", "N/A"),
                 entry["Variante nach Bestellung"].get("Container 4", "N/A") ]
 
-        st.dataframe(df.T)  # Transponieren des DataFrames und Anzeigen als Tabelle
+            st.dataframe(df.T)  # Transponieren des DataFrames und Anzeigen als Tabelle
         # Countdown-Timer
         timer_placeholder = st.empty()
         for i in range(10, -1, -1): #time zeit
