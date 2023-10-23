@@ -34,7 +34,7 @@ def display_results():
         # Countdown-Timer
         timer_placeholder = st.empty()
         for i in range(10, -1, -1): #time zeit
-            timer_text = f"<strong><span style='font-size: 2em;'>Kundentakt: {i} Sekunden</span></strong>"
+            timer_text = f"<strong><span style='font-size: 2em;'>Zeit bis zum Ausliefern (Kundentakt): {i} Sekunden</span></strong>"
             timer_placeholder.markdown(timer_text, unsafe_allow_html=True)
             time.sleep(0.8) # Sleep time to reduce for loop speed
         # Timer abgeschlossen
@@ -47,11 +47,4 @@ def display_results():
 
 if __name__ == '__main__':
     display_results()
-placeholder = st.empty()
-placeholder.text("**Sie müssen jetzt ausliefern!**")
-time.sleep(1)
-placeholder.empty()
-placeholder.text("")
-
-
 st.experimental_rerun()  # Seite neu laden
