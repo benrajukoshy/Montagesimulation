@@ -42,16 +42,9 @@ last_customer_name = existing_data[-1]["Kunde"] if existing_data else "Bitte Kun
 kunde = st.text_input("Kunde", current_Kunde)
 
 # Weitere Elemente
-st.write("Weitere Elemente:")
+st.write("Varianten:")
 sonderwunsch = st.text_input("Sonderwunsch", current_Sonderwunsch)
-varianten = {
-    "Führerhaus": "Rot",
-    "Sidepipes": "Rot",
-    "Container 1": "Rot",
-    "Container 2": "Rot",
-    "Container 3": "Rot",
-    "Container 4": "Rot"
-}
+
 
 # Qualitätsprüfung
 st.write("Qualitätsprüfung:")
