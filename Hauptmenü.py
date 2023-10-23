@@ -11,14 +11,7 @@ st.sidebar.markdown("# Hauptmenü 🏚️")
 st.title("Montagesimulation")
 st.write("Im Rahmen eines Praktikums wird die Analyse und Optimierung nach Methoden der schlanken Produktion vermittelt.")
 st.write("Diese Streamlit App dient der digitalen Abbildung von Bestellungen, deren Bearbeitung und Qualitätskontrolle")
-
-
-col1, col2 = st.columns(2)
-
-with col1:
-   st.header("Montagelayout")
-   st.image("layout.JPG",width=300)
-
-with col2:
-   st.header("Link zum Tool")
-   st.image("QR.JPG",width=140)
+st.header("Montagelayout")
+st.image("layout.JPG",width=300)
+st.header("Link zum Tool")
+st.image("QR.JPG",width=140)
