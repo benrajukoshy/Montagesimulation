@@ -38,7 +38,7 @@ def display_results():
                 entry["Variante nach Bestellung"].get("Container 4", "N/A")
             ]
 
-        st.dataframe(df.T, use_container_width=st.session_state.use_container_width)  # Transponieren des DataFrames und Anzeigen als Tabelle
+        st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
 
         # Countdown-Timer
         timer_placeholder = st.empty()
