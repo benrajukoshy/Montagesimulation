@@ -1,10 +1,10 @@
 import streamlit as st
 import datetime
 import json
+import pandas as pd
+
 st.markdown("# Werkzeugnis erstellen ✏️")
 st.sidebar.markdown("# Werkzeugniserstellen ✏️")
-
-
 
 # Funktion zum Ermitteln der höchsten bisher verwendeten Werkzeugnisnummer
 def get_highest_werkzeugnis_num(data):
@@ -28,18 +28,28 @@ existing_data = load_existing_data(werkzeugnis_database_filename)
 
 # Seitentitel
 
-
 # Automatisches Einfügen des ausgewählten Bestelldatums und der Uhrzeit
 bestellungen_database_filename = "bestellungen_database.json"
 bestellungen_data = load_existing_data(bestellungen_database_filename)
 selected_datetime = st.selectbox("Bestellung:", bestellungen_data)
-current_datetime = selected_datetime if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 st.write(f"Bestellung vom: {current_datetime}")
 
-# Kunde
-# Versuche, den letzten Kundenname aus der Datenbank zu laden
+# Kundenname
 last_customer_name = existing_data[-1]["Kunde"] if existing_data else "Bitte Kundennamen eingeben"
 kunde = st.text_input("Kunde", last_customer_name)
+
+# Weitere Elemente
+st.write("Weitere Elemente:")
+sonderwunsch = st.text_input("Sonderwunsch", "")
+varianten = {
+    "Führerhaus": "Rot",
+    "Sidepipes": "Rot",
+    "Container 1": "Rot",
+    "Container 2": "Rot",
+    "Container 3": "Rot",
+    "Container 4": "Rot"
+}
 
 # Qualitätsprüfung
 st.write("Qualitätsprüfung:")
@@ -57,8 +67,10 @@ for pruefung in pruefungen:
 if st.button("Werkzeugnis generieren"):
     # Speichern der Werkzeugnisinformationen in der Datenbank als separates JSON-Objekt pro Zeile
     werkzeugnis_info = {
-        "Bestelldatum": selected_datetime,
+        "Bestelldatum": current_datetime,
         "Kunde": kunde,
+        "Sonderwunsch": sonderwunsch,
+        "Variante nach Bestellung": varianten,
         "Qualitätsprüfung": selected_quality,
     }
     existing_data.append(werkzeugnis_info)  # Hinzufügen der neuen Daten zu den vorhandenen Daten
@@ -68,5 +80,16 @@ if st.button("Werkzeugnis generieren"):
             db.write(json.dumps(entry) + "\n")
 
     st.write("Das Werkzeugnis wurde generiert")
+    
+    # Erstellen eines DataFrames aus den Werkzeugnisdaten
+    df = pd.DataFrame(existing_data)
+    
+    # Setzen des Index auf "Kunde"
+    df.set_index("Kunde", inplace=True)
+    
+    # Anzeigen des DataFrames
+    st.write("Alle Werkzeugnisse:")
+    st.dataframe(df)
+
     # Laden der bestehenden Werkzeugnisdaten aus der JSON-Datei
     st.experimental_rerun()
