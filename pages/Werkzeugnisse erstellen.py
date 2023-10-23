@@ -43,7 +43,7 @@ kunde = st.text_input("Kunde", current_Kunde)
 
 # Weitere Elemente
 st.write("Weitere Elemente:")
-sonderwunsch = st.text_input("Sonderwunsch", "current_Sonderwunsch")
+sonderwunsch = st.text_input("Sonderwunsch", current_Sonderwunsch)
 varianten = {
     "Führerhaus": "Rot",
     "Sidepipes": "Rot",
