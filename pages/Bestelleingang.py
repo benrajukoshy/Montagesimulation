@@ -42,8 +42,12 @@ def display_results():
             ]
         
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
+       
+
+
+
         bestellungen_database_filename = "bestellungen_database.json"
-        bestellungen_data = load_existing_data(bestellungen_database_filename)
+        bestellungen_data = display_results(bestellungen_database_filename)
         current_Kundentakt = bestellungen_data["Kundentakt"]
         
         st.write("Wenn für bestimmte Bestandteile keine Farbangaben gemacht wurden, dann können diese frei gewählt werden")
