@@ -42,7 +42,7 @@ def display_results():
             ]
         
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
-        st.write("Dies ist der Kundentakt:", df["Kundentakt"])
+        st.write("Dies ist der Kundentakt:", df["Kundentakt"].values[2])
 
         #bestellungen_database_filename = "bestellungen_database.json"
         #bestellungen_data = display_results(bestellungen_database_filename)
