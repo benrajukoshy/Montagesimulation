@@ -37,12 +37,12 @@ data = load_data()
 
 # Erstelle das anpassbare Balkendiagramm mit Altair
 if data is not None:
-    base = alt.Chart(data, width=600, height=400).encode(x='Kunde:N', y='Zeitdifferenz:Q')
-    color_condition = alt.condition(
-        alt.datum['Kundentakt'] <= alt.datum['Zeitdifferenz'],
-        alt.value('green'), alt.value('red')
+    chart = alt.Chart(data, width=600, height=400).mark_bar().encode(
+        x='Kunde:N',
+        y='Zeitdifferenz:Q',
+        color=alt.condition(
+            alt.datum['Kundentakt'] <= alt.datum['Zeitdifferenz'],
+            alt.value('green'), alt.value('red')
+        )
     )
-    bars = base.mark_bar().encode(
-        color=color_condition
-    )
-    st.altair_chart(bars, use_container_width=True)
+    st.altair_chart(chart, use_container_width=True)
