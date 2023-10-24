@@ -85,7 +85,7 @@ if st.button("Werkzeugnis wurde generiert und Bestellung zum Kunden verschickt")
 
     time_diff = timedifference(current_datetime)  # Berechnen der Zeitdifferenz
     st.write(f"Der Kundenauftrag wurde {time_diff} Sekunden bearbeitet")
-
+    time.sleep(1)
     # Erstellen eines DataFrames aus den Werkzeugnisdaten
     df = pd.DataFrame(existing_data)
 
