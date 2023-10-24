@@ -43,7 +43,7 @@ if data is not None:
         y='Zeitdifferenz:Q',
         color=alt.condition(
             alt.datum['Kundentakt'] <= alt.datum['Zeitdifferenz'],
-            alt.value('green'), alt.value('red')
+            alt.value('rot'), alt.value('green')
         )
     )
     st.altair_chart(chart, use_container_width=True)
