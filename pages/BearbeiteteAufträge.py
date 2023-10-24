@@ -3,41 +3,46 @@ import pandas as pd
 import altair as alt
 import os
 
-# Lade die CSV-Datei
-@st.cache
+# Funktion zum Laden der Daten aus der CSV-Datei
 def load_data():
-    data = pd.read_csv("bearbeitsungsstatus.csv")
-    return data
-
-data = load_data()
+    try:
+        data = pd.read_csv("bearbeitsungsstatus.csv")
+        return data
+    except FileNotFoundError:
+        return None
 
 # Zeige die Daten als Tabelle
-st.write("Bearbeitungsstatus CSV-Datei")
-st.write(data)
+data = load_data()
+if data is not None:
+    st.write("Bearbeitungsstatus CSV-Datei")
+    st.write(data)
 
-# Füge einen Download-Button hinzu
-st.download_button(
-    label="CSV-Datei herunterladen",
-    data=data.to_csv(index=False).encode('utf-8'),
-    file_name="bearbeitsungsstatus.csv",
-    key="download-button"
-)
-
-# Erstelle das anpassbare Balkendiagramm mit Altair
-base = alt.Chart(data, width=600, height=400).encode(x='Kunde:N', y='Zeitdifferenz:Q')
-color_condition = alt.condition(
-    alt.datum['Kundentakt'] <= alt.datum['Zeitdifferenz'],
-    alt.value('green'), alt.value('red')
-)
-bars = base.mark_bar().encode(
-    color=color_condition
-)
-st.altair_chart(bars, use_container_width=True)
-
-# Button zum Löschen der Daten
+# Füge einen Button hinzu, um die Daten zu löschen
 if st.button("CSV-Daten löschen"):
     try:
         os.remove("bearbeitsungsstatus.csv")
         st.success("CSV-Daten wurden erfolgreich gelöscht.")
     except FileNotFoundError:
         st.warning("Die CSV-Datei existiert nicht.")
+
+# Zeige einen Datei-Uploader, um die Datei erneut hochzuladen
+uploaded_file = st.file_uploader("CSV-Datei erneut hochladen")
+if uploaded_file is not None:
+    with open("bearbeitsungsstatus.csv", "wb") as f:
+        f.write(uploaded_file.read())
+    st.success("CSV-Datei wurde erneut hochgeladen.")
+
+# Lade die Daten erneut
+data = load_data()
+
+# Erstelle das anpassbare Balkendiagramm mit Altair
+if data is not None:
+    base = alt.Chart(data, width=600, height=400).encode(x='Kunde:N', y='Zeitdifferenz:Q')
+    color_condition = alt.condition(
+        alt.datum['Kundentakt'] <= alt.datum['Zeitdifferenz'],
+        alt.value('green'), alt.value('red')
+    )
+    bars = base.mark_bar().encode(
+        color=color_condition
+    )
+    st.altair_chart(bars, use_container_width=True)
