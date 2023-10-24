@@ -1,7 +1,6 @@
 import streamlit as st
 import datetime
 import json
-
 st.markdown("# Bestellen 🛒")
 st.sidebar.markdown("# Bestellen 🛒")
 
@@ -32,22 +31,17 @@ st.write(f"Bestellung vom: {current_datetime}")
 # Auswahl der Bestellvarianten
 st.write("Bestellvarianten:")
 
-varianten_farben = {
-    "LKW Führerhaus": ["Blau", "Rot", "Gelb"],
-    "Container": ["Grün", "Gelb", "Blau"],
-    "Sidepipes": ["Rot", "Blau"]
-}
-
+varianten = ["Führerhaus", "Sidepipes", "Container 1", "Container 2", "Container 3", "Container 4"]
 selected_variants = {}
 
 # Erstelle 6 Spalten
 columns = st.columns(6)
 
-for variante, farben in varianten_farben.items():
-    with columns[0]:
+for i, variante in enumerate(varianten):
+    with columns[i]:
         st.write(variante)
-    with columns[1]:
-        selected_color = st.selectbox(f"Auswahl {variante}", farben)
+        farben = ["Rot", "Grün", "Gelb", "Blau"]
+        selected_color = st.radio(f"Auswahl {variante}", farben)
         if selected_color:
             selected_variants[variante] = selected_color
 
