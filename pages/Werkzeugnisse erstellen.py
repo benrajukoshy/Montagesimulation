@@ -26,6 +26,30 @@ def load_existing_data(filename):
     except (FileNotFoundError, json.JSONDecodeError):
         return []
 
+
+
+# Funktion zum Speichern der Daten in einer CSV-Datei
+def save_to_csv(data):
+    filename = "bearbeitsungsstatus.csv"
+    with open(filename, 'w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile)
+        # Schreibe die Kopfzeile
+        csv_writer.writerow(["Kunde", "Auftragsnummer", "Bestelldatum Uhrzeit", "Aktuelle Dauer und Uhrzeit", "Zeitdifferenz", "current varianten", "selected quality"])
+        for entry in data:
+            kunde = entry["Kunde"]
+            auftragsnummer = entry.get("Auftragsnummer", "N/A")
+            bestelldatum_uhrzeit = entry["Bestelldatum"]
+            aktuelle_dauer_uhrzeit = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            zeitdifferenz = timedifference(entry["Bestelldatum"])
+            current_varianten = entry["Variante nach Bestellung"]
+            selected_quality_montage = entry["Qualitätsprüfung"].get("Montage", "N/A")
+            selected_quality_oberflaeche = entry["Qualitätsprüfung"].get("Oberfläche", "N/A")
+
+            csv_writer.writerow([kunde, auftragsnummer, bestelldatum_uhrzeit, aktuelle_dauer_uhrzeit, zeitdifferenz, current_varianten, f"Montage: {selected_quality_montage}, Oberfläche: {selected_quality_oberflaeche}"])
+
+# ...
+
+
 existing_data = load_existing_data(werkzeugnis_database_filename)
 
 # Seitentitel
