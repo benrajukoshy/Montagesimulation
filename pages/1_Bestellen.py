@@ -48,8 +48,8 @@ selected_variants = {}
 columns = st.columns(6)
 
 for variante, farben in varianten_farben.items():
-    with columns[0]:
-        #st.write(variante)
+    #with columns[0]:
+      #  st.write(variante)
     with columns[1]:
         selected_color = st.radio(f"Auswahl {variante}", farben)
         if selected_color:
