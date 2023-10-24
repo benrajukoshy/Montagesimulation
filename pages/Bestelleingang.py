@@ -31,6 +31,7 @@ def display_results():
             df.loc[idx] = [
                 entry["Bestelldatum und Uhrzeit"],
                 entry["Kunde"],
+                entry["Auftragsnummer"],
                 entry["Sonderwunsch"],
                 entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
                 entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
