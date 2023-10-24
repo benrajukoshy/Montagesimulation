@@ -5,9 +5,9 @@ import json
 import pandas as pd
 import csv
 
-st.markdown("# Werkzeugnis erstellen ✏️")
-st.sidebar.markdown("# Werkzeugniserstellen ✏️")
-
+st.markdown("# Auftrag abschließen ✏️")
+st.sidebar.markdown("# Auftrag abschließen ✏️")
+st.write("Qualitätskontrolle und Versandt")
 # Funktion zum Ermitteln der höchsten bisher verwendeten Werkzeugnisnummer
 def get_highest_werkzeugnis_num(data):
     if not data:
@@ -95,7 +95,7 @@ def timedifference(current_datetime):
     return int(time_difference)
 
 # Schaltfläche, um das Werkzeugnis zu generieren
-if st.button("Werkzeugnis wurde generiert und Bestellung zum Kunden verschickt"):
+if st.button("Auftrag abgeschlossen und Bestellung zum Kunden verschickt"):
     # Speichern der Werkzeugnisinformationen in der Datenbank als separates JSON-Objekt pro Zeile
     werkzeugnis_info = {
         "Bestelldatum": current_datetime,
