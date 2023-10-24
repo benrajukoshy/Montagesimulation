@@ -34,7 +34,7 @@ def save_to_csv(data):
     with open(filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
         # Schreibe die Kopfzeile
-        csv_writer.writerow(["Kunde", "Auftragsnummer", "Bestelldatum Uhrzeit", "Aktuelle Dauer und Uhrzeit", "Zeitdifferenz", "current varianten", "selected quality"])
+        csv_writer.writerow(["Kunde", "Auftragsnummer", "Bestelldatum Uhrzeit", "Aktuelle Dauer und Uhrzeit", "Zeitdifferenz", "current varianten", "selected quality", "Kundentakt"])
         for entry in data:
             kunde = entry["Kunde"]
             auftragsnummer = entry.get("Auftragsnummer", "N/A")
@@ -44,8 +44,8 @@ def save_to_csv(data):
             current_varianten = entry["Variante nach Bestellung"]
             selected_quality_montage = entry["Qualitätsprüfung"].get("Montage", "N/A")
             selected_quality_oberflaeche = entry["Qualitätsprüfung"].get("Oberfläche", "N/A")
-
-            csv_writer.writerow([kunde, auftragsnummer, bestelldatum_uhrzeit, aktuelle_dauer_uhrzeit, zeitdifferenz, current_varianten, f"Montage: {selected_quality_montage}, Oberfläche: {selected_quality_oberflaeche}"])
+            current_Kundentakt = entry["Kundentakt"]
+            csv_writer.writerow([kunde, auftragsnummer, bestelldatum_uhrzeit, aktuelle_dauer_uhrzeit, zeitdifferenz, current_varianten, f"Montage: {selected_quality_montage}, Oberfläche: {selected_quality_oberflaeche}", current_Kundentakt])
 
 # ...
 
