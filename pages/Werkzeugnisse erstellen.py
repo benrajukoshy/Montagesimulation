@@ -62,6 +62,7 @@ current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen
 current_Kunde = selected_datetime["Kunde"]
 current_Sonderwunsch = selected_datetime["Sonderwunsch"]
 current_Varianten = selected_datetime["Variante nach Bestellung"]
+current_Kundentakt = selected_datetime["Kundentakt"]
 st.write(f"Bestellung vom: {current_datetime}")
 
 # Kundenname
@@ -102,6 +103,7 @@ if st.button("Werkzeugnis wurde generiert und Bestellung zum Kunden verschickt")
         "Sonderwunsch": sonderwunsch,
         "Variante nach Bestellung": current_Varianten,
         "Qualitätsprüfung": selected_quality,
+        "Kundentakt": current_Kundentakt
     }
     existing_data.append(werkzeugnis_info)  # Hinzufügen der neuen Daten zu den vorhandenen Daten
 
