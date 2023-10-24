@@ -1,5 +1,6 @@
 import streamlit as st
 import datetime
+import time
 import json
 import pandas as pd
 
@@ -84,7 +85,7 @@ if st.button("Werkzeugnis wurde generiert und Bestellung zum Kunden verschickt")
             db.write(json.dumps(entry) + "\n")
 
     time_diff = timedifference(current_datetime)  # Berechnen der Zeitdifferenz
-    st.write(f"Der Kundenauftrag wurde {time_diff} Sekunden bearbeitet")
+    st.write(f"Der Kundenauftrag wurde in {time_diff} Sekunden bearbeitet")
     time.sleep(1)
     # Erstellen eines DataFrames aus den Werkzeugnisdaten
     df = pd.DataFrame(existing_data)
