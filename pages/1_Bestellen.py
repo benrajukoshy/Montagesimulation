@@ -28,11 +28,6 @@ kunde = st.text_input("Kundenname")
 # Automatisches Einfügen des aktuellen Datums und der Uhrzeit
 current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-# Generiere die Auftragsnummer aus den ersten Buchstaben des Kunden und dem Datum
-if kunde:
-    auftragsnummer = kunde[0].upper() + current_datetime.replace("-", "").replace(" ", "").replace(":", "")
-    st.write(f"Auftragsnummer: {auftragsnummer}")
-
 st.write(f"Bestellung vom: {current_datetime}")
 # Auswahl der Bestellvarianten
 st.write("Wählen Sie Ihre Farben aus:")
@@ -74,7 +69,6 @@ if st.button("Bestellung abschicken"):
     bestellungen_info = {
         "Bestelldatum und Uhrzeit": current_datetime,
         "Kunde": kunde,
-        "Auftragsnummer": auftragsnummer,
         "Sonderwunsch": sonderwunsch,
         "Variante nach Bestellung": selected_variants,
         "Kundentakt": Kundentakt,        
