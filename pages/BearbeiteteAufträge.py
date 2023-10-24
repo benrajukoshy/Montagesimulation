@@ -20,3 +20,6 @@ st.download_button(
     file_name="bearbeitsungsstatus.csv",
     key="download-button"
 )
+
+# Erstelle das Balkendiagramm
+st.bar_chart(data.set_index("Kundenname")["Zeitdifferenz (s)"])
