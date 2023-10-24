@@ -30,7 +30,7 @@ current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 st.write(f"Bestellung vom: {current_datetime}")
 # Auswahl der Bestellvarianten
-st.write("Bestellvarianten:")
+st.write("Wählen Sie Ihre Farben aus:")
 
 varianten_farben = {
     "Führerhaus": ["Blau", "Rot", "Gelb"],
@@ -49,7 +49,7 @@ columns = st.columns(6)
 
 for variante, farben in varianten_farben.items():
     with columns[0]:
-        st.write(variante)
+        #st.write(variante)
     with columns[1]:
         selected_color = st.radio(f"Auswahl {variante}", farben)
         if selected_color:
