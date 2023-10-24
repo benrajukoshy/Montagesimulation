@@ -45,4 +45,4 @@ if data is not None:
             scale=alt.Scale(domain=['true', 'false'], range=['green', 'black'])
         )
     )
-    st.altair_chart(chart, use_container_width=True)
+st.altair_chart(chart, use_container_width=True)
