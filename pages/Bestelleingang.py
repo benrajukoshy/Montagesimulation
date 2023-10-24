@@ -7,8 +7,8 @@ import pandas as pd
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
-st.markdown("# Bestellungen 🚀")
-st.sidebar.markdown("# Bestellungen 🚀")
+st.markdown("# Aufträge 🚀")
+st.sidebar.markdown("# Aufträge 🚀")
 
 # Dateiname der Datenbank
 database_filename = "bestellungen_database.json"
