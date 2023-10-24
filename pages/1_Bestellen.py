@@ -47,13 +47,9 @@ for variante, farben in varianten_farben.items():
     with columns[0]:
         st.write(variante)
     with columns[1]:
-        selected_color = st.selectbox(f"Auswahl {variante}", farben)
+        selected_color = st.radio(f"Auswahl {variante}", farben)
         if selected_color:
             selected_variants[variante] = selected_color
-
-# Zeige die ausgewählten Varianten und Farben an
-#st.write("Ausgewählte Varianten und Farben:")
-#st.write(selected_variants)
 
 # Sonderwunsch
 sonderwunsch = st.text_input("Sonderwunsch", "")
