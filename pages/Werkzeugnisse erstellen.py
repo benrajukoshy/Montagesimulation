@@ -3,6 +3,7 @@ import datetime
 import time
 import json
 import pandas as pd
+import csv
 
 st.markdown("# Werkzeugnis erstellen ✏️")
 st.sidebar.markdown("# Werkzeugniserstellen ✏️")
