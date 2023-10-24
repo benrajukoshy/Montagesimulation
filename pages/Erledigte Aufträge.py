@@ -41,6 +41,6 @@ if data is not None:
         x='Kunde:N',
         y='Zeitdifferenz:Q',
         color=alt.value('steelblue')
-        )
+        
     )
 st.altair_chart(chart, use_container_width=True)
