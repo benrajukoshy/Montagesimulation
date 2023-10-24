@@ -33,7 +33,7 @@ st.write(f"Bestellung vom: {current_datetime}")
 st.write("Bestellvarianten:")
 
 varianten_farben = {
-    "LKW Führerhaus": ["Blau", "Rot", "Gelb"],
+    "Führerhaus": ["Blau", "Rot", "Gelb"],
     "Sidepipes": ["Rot", "Blau"],
     "Container 1": ["Grün", "Gelb", "Blau"],
     "Container 2": ["Grün", "Gelb", "Blau"],
