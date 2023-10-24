@@ -3,9 +3,12 @@ import datetime
 import time
 import json
 import pandas as pd
+import csv
 
 st.markdown("# Werkzeugnis erstellen ✏️")
 st.sidebar.markdown("# Werkzeugniserstellen ✏️")
+
+# ...
 
 # Funktion zum Ermitteln der höchsten bisher verwendeten Werkzeugnisnummer
 def get_highest_werkzeugnis_num(data):
@@ -26,6 +29,25 @@ def load_existing_data(filename):
         return []
 
 existing_data = load_existing_data(werkzeugnis_database_filename)
+
+# Funktion zum Speichern der Daten in einer CSV-Datei
+def save_to_csv(data):
+    filename = "bearbeitsungsstatus.csv"
+    with open(filename, 'w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile)
+        # Schreibe die Kopfzeile
+        csv_writer.writerow(["Kunde", "Auftragsnummer", "Bestelldatum Uhrzeit", "Aktuelle Dauer und Uhrzeit", "Zeitdifferenz", "current varianten", "selected quality"])
+        for entry in data:
+            kunde = entry["Kunde"]
+            auftragsnummer = entry.get("Auftragsnummer", "N/A")
+            bestelldatum_uhrzeit = entry["Bestelldatum"]
+            aktuelle_dauer_uhrzeit = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            zeitdifferenz = timedifference(entry["Bestelldatum"])
+            current_varianten = entry["Variante nach Bestellung"]
+            selected_quality_montage = entry["Qualitätsprüfung"].get("Montage", "N/A")
+            selected_quality_oberflaeche = entry["Qualitätsprüfung"].get("Oberfläche", "N/A")
+
+            csv_writer.writerow([kunde, auftragsnummer, bestelldatum_uhrzeit, aktuelle_dauer_uhrzeit, zeitdifferenz, current_varianten, f"Montage: {selected_quality_montage}, Oberfläche: {selected_quality_oberflaeche}"])
 
 # Seitentitel
 
@@ -48,7 +70,6 @@ st.write("Varianten:")
 st.write("Kundenvariante:", current_Varianten)
 sonderwunsch = st.text_input("Sonderwunsch", current_Sonderwunsch)
 
-
 # Qualitätsprüfung
 st.write("Qualitätsprüfung:")
 pruefungen = ["Montage", "Oberfläche"]
@@ -68,10 +89,11 @@ def timedifference(current_datetime):
     time_difference = (now - bestelldatum).total_seconds()
     return int(time_difference)
 
-# Schaltfläche, um das Werkzeugnis zu generieren
+# Schaltfläche, um das Werkzeugnis zu generieren und Daten in der CSV-Datei zu speichern
 if st.button("Werkzeugnis wurde generiert und Bestellung zum Kunden verschickt"):
     # Speichern der Werkzeugnisinformationen in der Datenbank als separates JSON-Objekt pro Zeile
     werkzeugnis_info = {
+        "Auftragsnummer": get_highest_werkzeugnis_num(existing_data) + 1,
         "Bestelldatum": current_datetime,
         "Kunde": kunde,
         "Sonderwunsch": sonderwunsch,
@@ -96,6 +118,9 @@ if st.button("Werkzeugnis wurde generiert und Bestellung zum Kunden verschickt")
     # Anzeigen des DataFrames
     st.write("Alle Werkzeugnisse:")
     st.dataframe(df)
+
+    # Speichern der Daten in der CSV-Datei
+    save_to_csv(existing_data)
 
     # Laden der bestehenden Werkzeugnisdaten aus der JSON-Datei
     st.experimental_rerun()
