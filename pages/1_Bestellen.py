@@ -35,10 +35,10 @@ st.write("Bestellvarianten:")
 varianten_farben = {
     "LKW Führerhaus": ["Blau", "Rot", "Gelb"],
     "Sidepipes": ["Rot", "Blau"],
-    "Container1": ["Grün", "Gelb", "Blau"],
-    "Container2": ["Grün", "Gelb", "Blau"],
-    "Container3": ["Grün", "Gelb", "Blau"],
-    "Container4": ["Grün", "Gelb", "Blau"]
+    "Container 1": ["Grün", "Gelb", "Blau"],
+    "Container 2": ["Grün", "Gelb", "Blau"],
+    "Container 3": ["Grün", "Gelb", "Blau"],
+    "Container 4": ["Grün", "Gelb", "Blau"]
     
 }
 
