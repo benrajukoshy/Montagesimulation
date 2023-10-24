@@ -36,13 +36,14 @@ if uploaded_file is not None:
 data = load_data()
 
 # Erstelle das anpassbare Balkendiagramm mit Altair
+# Erstelle das anpassbare Balkendiagramm mit Altair
 if data is not None:
     chart = alt.Chart(data, width=600, height=400).mark_bar().encode(
         x='Kunde:N',
         y='Zeitdifferenz:Q',
         color=alt.condition(
             alt.datum['Kundentakt'] <= alt.datum['Zeitdifferenz'],
-            alt.value('red'), alt.value('green')
+            alt.value('green'), alt.value('red')
         )
     )
     st.altair_chart(chart, use_container_width=True)
