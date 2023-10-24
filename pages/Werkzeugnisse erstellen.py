@@ -65,8 +65,8 @@ current_Varianten = selected_datetime["Variante nach Bestellung"]
 st.write(f"Bestellung vom: {current_datetime}")
 
 # Kundenname
-last_customer_name = existing_data[-1]["Kunde"] if existing_data else "Bitte Kundennamen eingeben"
-kunde = st.text_input("Kunde", current_Kunde)
+#last_customer_name = existing_data[-1]["Kunde"] if existing_data else "Bitte Kundennamen eingeben"
+#kunde = st.text_input("Kunde", current_Kunde)
 
 # Weitere Elemente
 st.write("Varianten:")
