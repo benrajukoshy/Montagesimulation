@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+import os
 
 # Lade die CSV-Datei
 @st.cache
@@ -32,3 +33,11 @@ bars = base.mark_bar().encode(
     color=color_condition
 )
 st.altair_chart(bars, use_container_width=True)
+
+# Button zum Löschen der Daten
+if st.button("CSV-Daten löschen"):
+    try:
+        os.remove("bearbeitsungsstatus.csv")
+        st.success("CSV-Daten wurden erfolgreich gelöscht.")
+    except FileNotFoundError:
+        st.warning("Die CSV-Datei existiert nicht.")
