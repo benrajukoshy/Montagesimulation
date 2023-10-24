@@ -41,7 +41,7 @@ if data is not None:
         x='Kunde:N',
         y='Zeitdifferenz:Q',
         color=alt.condition(
-            alt.datum.Kundentakt <= alt.datum.Zeitdifferenz,
+            alt.datum.Kundentakt => alt.datum.Zeitdifferenz,
             alt.value('rot'), alt.value('green')
         )
     )
