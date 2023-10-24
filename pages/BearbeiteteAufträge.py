@@ -22,4 +22,4 @@ st.download_button(
 )
 
 # Erstelle das Balkendiagramm
-st.bar_chart(data.set_index("Kundenname")["Zeitdifferenz (s)"])
+st.bar_chart(data[["Kunde", "Zeitdifferenz"]].set_index("Kunde"))
