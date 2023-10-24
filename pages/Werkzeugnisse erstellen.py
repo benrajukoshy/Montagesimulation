@@ -98,7 +98,7 @@ if st.button("Werkzeugnis wurde generiert und Bestellung zum Kunden verschickt")
     # Speichern der Werkzeugnisinformationen in der Datenbank als separates JSON-Objekt pro Zeile
     werkzeugnis_info = {
         "Bestelldatum": current_datetime,
-        "Kunde": kunde,
+        "Kunde": current_Kunde,
         "Sonderwunsch": sonderwunsch,
         "Variante nach Bestellung": current_Varianten,
         "Qualitätsprüfung": selected_quality,
