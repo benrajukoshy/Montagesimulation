@@ -40,9 +40,7 @@ if data is not None:
     chart = alt.Chart(data, width=600, height=400).mark_bar().encode(
         x='Kunde:N',
         y='Zeitdifferenz:Q',
-        color=alt.Color(
-            'Kundentakt <= Zeitdifferenz:N',
-            scale=alt.Scale(domain=['true', 'false'], range=['green', 'black'])
+        color=alt.Color('black')
         )
     )
 st.altair_chart(chart, use_container_width=True)
