@@ -30,7 +30,7 @@ current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # Generiere die Auftragsnummer aus den ersten Buchstaben des Kunden und dem Datum
 if kunde:
-    auftragsnummer = kunde[0].upper() + current_datetime.replace("-", "").replace(" ", "").replace(":", "")
+    auftragsnummer = kunde[:3].upper() + current_datetime.replace("-", "").replace(" ", "").replace(":", "")
     st.write(f"Auftragsnummer: {auftragsnummer}")
 
 st.write(f"Bestellung vom: {current_datetime}")
