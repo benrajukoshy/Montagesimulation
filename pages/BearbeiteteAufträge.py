@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import altair
+import altair as alt
 
 # Lade die CSV-Datei
 @st.cache
@@ -22,5 +22,13 @@ st.download_button(
     key="download-button"
 )
 
-# Erstelle das Balkendiagramm
-st.bar_chart(data[["Kunde", "Zeitdifferenz"]].set_index("Kunde"))
+# Erstelle das anpassbare Balkendiagramm mit Altair
+base = alt.Chart(data, width=600, height=400).encode(x='Kunde:N', y='Zeitdifferenz:Q')
+color_condition = alt.condition(
+    alt.datum['Kundentakt'] <= alt.datum['Zeitdifferenz'],
+    alt.value('green'), alt.value('red')
+)
+bars = base.mark_bar().encode(
+    color=color_condition
+)
+st.altair_chart(bars, use_container_width=True)
