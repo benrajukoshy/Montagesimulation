@@ -5,20 +5,13 @@ import pandas as pd
 
 # ...
 
-# Erstelle eine VideoTransformerBase-Klasse, um Bilder von der Webcam aufzunehmen
-class VideoTransformer(VideoTransformerBase):
-    def transform(self, frame):
-        return frame
-
-# ...
-
 # Verwende st.camera_input, um Bilder von der Webcam aufzunehmen
 webcam_image = st.camera_input("Webcam")
 if webcam_image is not None:
     # Speichere das aufgenommene Bild als Datei mit einem eindeutigen Dateinamen
     image_filename = f"webcam_image_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.png"
     with open(image_filename, "wb") as image_file:
-        image_file.write(webcam_image)
+        image_file.write(webcam_image.read())
 
 # ...
 
