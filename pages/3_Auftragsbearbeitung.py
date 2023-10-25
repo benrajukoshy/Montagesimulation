@@ -33,6 +33,7 @@ def load_existing_data(filename):
 # Funktion zum Speichern der Daten in einer CSV-Datei
 def save_to_csv(data):
     filename = "bearbeitsungsstatus.csv"
+    header = ["Kunde", "Auftragsnummer", "Bestelldatum Uhrzeit", "Aktuelle Dauer und Uhrzeit", "Zeitdifferenz", "current varianten", "selected quality", "Kundentakt"]
     rows = []
 
     # Wenn die Datei existiert, laden Sie die vorhandigen Daten
