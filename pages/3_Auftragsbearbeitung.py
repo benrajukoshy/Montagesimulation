@@ -29,24 +29,37 @@ def load_existing_data(filename):
 
 
 # Funktion zum Speichern der Daten in einer CSV-Datei
+# Funktion zum Speichern der Daten in einer CSV-Datei
 def save_to_csv(data):
     filename = "bearbeitsungsstatus.csv"
+    rows = []
+
+    # Wenn die Datei existiert, laden Sie die vorhandigen Daten
+    if os.path.isfile(filename):
+        with open(filename, 'r', newline='') as csvfile:
+            csv_reader = csv.reader(csvfile)
+            header = next(csv_reader)  # Header-Zeile überspringen
+            for row in csv_reader:
+                rows.append(row)
+
+    # Füge die neue Zeile hinzu
+    kunde = data[0]["Kunde"]
+    auftragsnummer = data[0].get("Auftragsnummer", "N/A")
+    bestelldatum_uhrzeit = data[0]["Bestelldatum"]
+    aktuelle_dauer_uhrzeit = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    zeitdifferenz = timedifference(data[0]["Bestelldatum"])
+    current_varianten = data[0]["Variante nach Bestellung"]
+    selected_quality_montage = data[0]["Qualitätsprüfung"].get("Montage", "N/A")
+    selected_quality_oberflaeche = data[0]["Qualitätsprüfung"].get("Oberfläche", "N/A")
+    current_Kundentakt = data[0]["Kundentakt"]
+    new_row = [kunde, auftragsnummer, bestelldatum_uhrzeit, aktuelle_dauer_uhrzeit, zeitdifferenz, current_varianten, f"Montage: {selected_quality_montage}, Oberfläche: {selected_quality_oberflaeche}", current_Kundentakt]
+    rows.append(new_row)
+
+    # Schreibe die Daten zurück in die CSV-Datei
     with open(filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
-        # Schreibe die Kopfzeile
-        csv_writer.writerow(["Kunde", "Auftragsnummer", "Bestelldatum Uhrzeit", "Aktuelle Dauer und Uhrzeit", "Zeitdifferenz", "current varianten", "selected quality", "Kundentakt"])
-        for entry in data:
-            kunde = entry["Kunde"]
-            auftragsnummer = entry.get("Auftragsnummer", "N/A")
-            bestelldatum_uhrzeit = entry["Bestelldatum"]
-            aktuelle_dauer_uhrzeit = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            zeitdifferenz = timedifference(entry["Bestelldatum"])
-            current_varianten = entry["Variante nach Bestellung"]
-            selected_quality_montage = entry["Qualitätsprüfung"].get("Montage", "N/A")
-            selected_quality_oberflaeche = entry["Qualitätsprüfung"].get("Oberfläche", "N/A")
-            current_Kundentakt = entry["Kundentakt"]
-            csv_writer.writerow([kunde, auftragsnummer, bestelldatum_uhrzeit, aktuelle_dauer_uhrzeit, zeitdifferenz, current_varianten, f"Montage: {selected_quality_montage}, Oberfläche: {selected_quality_oberflaeche}", current_Kundentakt])
-
+        csv_writer.writerow(header)
+        csv_writer.writerows(rows)
 # ...
 
 
