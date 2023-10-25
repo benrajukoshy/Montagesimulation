@@ -2,7 +2,6 @@
 # Contents of ~/my_app/main_page.py
 import streamlit as st
 
-#testtest
 
 st.sidebar.image("https://www.fau.de/files/2021/10/neues-fau-logo-nur-fuer-webmeldung-1024x198.jpg", use_column_width=True)
 
