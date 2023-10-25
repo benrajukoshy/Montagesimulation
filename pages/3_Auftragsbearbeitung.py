@@ -52,17 +52,18 @@ def save_to_csv(data):
                 rows.insert(0, header)
 
     # Füge die neue Zeile hinzu
-    kunde = data[0]["Kunde"]
-    auftragsnummer = data[0].get("Auftragsnummer", "N/A")
-    bestelldatum_uhrzeit = data[0]["Bestelldatum"]
-    aktuelle_dauer_uhrzeit = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    zeitdifferenz = timedifference(data[0]["Bestelldatum"])
-    current_varianten = data[0]["Variante nach Bestellung"]
-    selected_quality_montage = data[0]["Qualitätsprüfung"].get("Montage", "N/A")
-    selected_quality_oberflaeche = data[0]["Qualitätsprüfung"].get("Oberfläche", "N/A")
-    current_Kundentakt = data[0]["Kundentakt"]
-    new_row = [kunde, auftragsnummer, bestelldatum_uhrzeit, aktuelle_dauer_uhrzeit, zeitdifferenz, current_varianten, f"Montage: {selected_quality_montage}, Oberfläche: {selected_quality_oberflaeche}", current_Kundentakt]
-    rows.append(new_row)
+    for entry in data:
+        kunde = entry["Kunde"]
+        auftragsnummer = entry.get("Auftragsnummer", "N/A")
+        bestelldatum_uhrzeit = entry["Bestelldatum"]
+        aktuelle_dauer_uhrzeit = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        zeitdifferenz = timedifference(entry["Bestelldatum"])
+        current_varianten = entry["Variante nach Bestellung"]
+        selected_quality_montage = entry["Qualitätsprüfung"].get("Montage", "N/A")
+        selected_quality_oberflaeche = entry["Qualitätsprüfung"].get("Oberfläche", "N/A")
+        current_Kundentakt = entry["Kundentakt"]
+        new_row = [kunde, auftragsnummer, bestelldatum_uhrzeit, aktuelle_dauer_uhrzeit, zeitdifferenz, current_varianten, f"Montage: {selected_quality_montage}, Oberfläche: {selected_quality_oberflaeche}", current_Kundentakt]
+        rows.append(new_row)
 
     # Schreibe die Daten zurück in die CSV-Datei
     with open(filename, 'w', newline='') as csvfile:
