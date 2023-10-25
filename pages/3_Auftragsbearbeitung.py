@@ -124,9 +124,6 @@ if st.button("Auftrag abgeschlossen und Bestellung zum Kunden verschickt"):
     st.write("Alle Werkzeugnisse:")
     st.dataframe(df)
     # Speichern der Daten in der CSV-Datei
-    # Speichern der Daten in der CSV-Datei
-    if len(existing_data) > 0:
-        last_entry = existing_data[-1]  # Die letzte hinzugefügte Zeile
-        save_to_csv([last_entry])  # Speichern Sie nur die letzte Zeile in der CSV-Datei
+    save_to_csv(existing_data)
     # Laden der bestehenden Werkzeugnisdaten aus der JSON-Datei
     st.experimental_rerun()
