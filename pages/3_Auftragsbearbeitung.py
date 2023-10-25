@@ -29,7 +29,7 @@ def load_existing_data(filename):
 
 
 
-# Funktion zum Speichern der Daten in einer CSV-Datei
+
 # Funktion zum Speichern der Daten in einer CSV-Datei
 def save_to_csv(data):
     filename = "bearbeitsungsstatus.csv"
@@ -40,9 +40,16 @@ def save_to_csv(data):
     if os.path.isfile(filename):
         with open(filename, 'r', newline='') as csvfile:
             csv_reader = csv.reader(csvfile)
-            header = next(csv_reader)  # Header-Zeile überspringen
+            header_found = False
             for row in csv_reader:
-                rows.append(row)
+                if row == header:
+                    header_found = True
+                else:
+                    rows.append(row)
+
+            # Wenn die Header-Zeile nicht gefunden wurde, fügen Sie sie hinzu
+            if not header_found:
+                rows.insert(0, header)
 
     # Füge die neue Zeile hinzu
     kunde = data[0]["Kunde"]
@@ -60,9 +67,7 @@ def save_to_csv(data):
     # Schreibe die Daten zurück in die CSV-Datei
     with open(filename, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
-        # Schreibe die Kopfzeile
-        csv_writer.writerow(header)
-        csv_writer.writerows(rows)
+        csv_writer.writerows([header] + rows)
 # ...
 
 
