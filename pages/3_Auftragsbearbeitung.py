@@ -61,7 +61,7 @@ def save_to_csv(data):
         csv_writer = csv.writer(csvfile)
         # Schreibe die Kopfzeile
         csv_writer.writerow(["Kunde", "Auftragsnummer", "Bestelldatum Uhrzeit", "Aktuelle Dauer und Uhrzeit", "Zeitdifferenz", "current varianten", "selected quality", "Kundentakt"])
-        csv_writer.writerow(header)
+        #csv_writer.writerow(header)
         csv_writer.writerows(rows)
 # ...
 
