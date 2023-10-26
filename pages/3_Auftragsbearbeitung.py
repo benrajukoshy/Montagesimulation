@@ -9,13 +9,7 @@ import os
 st.markdown("# Auftrag abschließen ✏️")
 st.sidebar.markdown("# Auftrag abschließen ✏️")
 st.write("Qualitätskontrolle und Versandt")
-# Funktion zum Ermitteln der höchsten bisher verwendeten Werkzeugnisnummer
-def get_highest_werkzeugnis_num(data):
-    if not data:
-        return 0
-    return max(int(entry["Werkzeugnisnummer"]) for entry in data)
 
-# Datenbank-Datei für Werkzeugnisinformationen im JSON-Format
 werkzeugnis_database_filename = "werkzeugnis_database.json"
 
 # Laden der bestehenden Werkzeugnisdaten aus der JSON-Datei
@@ -27,94 +21,34 @@ def load_existing_data(filename):
     except (FileNotFoundError, json.JSONDecodeError):
         return []
 
-
-
-
-# Funktion zum Speichern der Daten in einer CSV-Datei
-def save_to_csv(data):
-    filename = "bearbeitsungsstatus.csv"
-    header = ["Kunde", "Auftragsnummer", "Bestelldatum Uhrzeit", "Aktuelle Dauer und Uhrzeit", "Zeitdifferenz", "current varianten", "selected quality", "Kundentakt"]
-    rows = []
-
-    # Wenn die Datei existiert, laden Sie die vorhandigen Daten
-    if os.path.isfile(filename):
-        with open(filename, 'r', newline='') as csvfile:
-            csv_reader = csv.reader(csvfile)
-            header_found = False
-            for row in csv_reader:
-                if row == header:
-                    header_found = True
-                else:
-                    rows.append(row)
-
-            # Wenn die Header-Zeile nicht gefunden wurde, fügen Sie sie hinzu
-            if not header_found:
-                rows.insert(0, header)
-
-    # Füge die neue Zeile hinzu
-    for entry in data:
-        kunde = entry["Kunde"]
-        auftragsnummer = entry.get("Auftragsnummer", "N/A")
-        bestelldatum_uhrzeit = entry["Bestelldatum"]
-        aktuelle_dauer_uhrzeit = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        zeitdifferenz = timedifference(entry["Bestelldatum"])
-        current_varianten = entry["Variante nach Bestellung"]
-        selected_quality_montage = entry["Qualitätsprüfung"].get("Montage", "N/A")
-        selected_quality_oberflaeche = entry["Qualitätsprüfung"].get("Oberfläche", "N/A")
-        current_Kundentakt = entry["Kundentakt"]
-        new_row = [kunde, auftragsnummer, bestelldatum_uhrzeit, aktuelle_dauer_uhrzeit, zeitdifferenz, current_varianten, f"Montage: {selected_quality_montage}, Oberfläche: {selected_quality_oberflaeche}", current_Kundentakt]
-        rows.append(new_row)
-
-    # Schreibe die Daten zurück in die CSV-Datei
-    with open(filename, 'w', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerows([header] + rows)
 # ...
-
 
 existing_data = load_existing_data(werkzeugnis_database_filename)
 
-# Seitentitel
+# ...
 
-# Automatisches Einfügen des ausgewählten Bestelldatums und der Uhrzeit
-bestellungen_database_filename = "bestellungen_database.json"
-bestellungen_data = load_existing_data(bestellungen_database_filename)
-selected_datetime = st.selectbox("Bestellung:", bestellungen_data)
-current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-current_Kunde = selected_datetime["Kunde"]
-current_Sonderwunsch = selected_datetime["Sonderwunsch"]
-current_Varianten = selected_datetime["Variante nach Bestellung"]
-current_Kundentakt = selected_datetime["Kundentakt"]
-st.write(f"Bestellung vom: {current_datetime}")
-
-# Kundenname
-#last_customer_name = existing_data[-1]["Kunde"] if existing_data else "Bitte Kundennamen eingeben"
-#kunde = st.text_input("Kunde", current_Kunde)
-
-# Weitere Elemente
-st.write("Varianten:")
-st.write("Kundenvariante:", current_Varianten)
-sonderwunsch = st.text_input("Sonderwunsch", current_Sonderwunsch)
-
-
-# Qualitätsprüfung
-st.write("Qualitätsprüfung:")
-pruefungen = ["Montage", "Oberfläche"]
-qualitaet = ["i.O", "ni.O"]
-selected_quality = {}
-
-for pruefung in pruefungen:
-    st.write(pruefung)
-    selected_q = st.radio(f"Auswahl {pruefung}", qualitaet)
-    if selected_q:
-        selected_quality[pruefung] = selected_q
-
-# Hinzufügen der Funktion für die Zeitdifferenz
 def timedifference(current_datetime):
     bestelldatum = datetime.datetime.strptime(current_datetime, "%Y-%m-%d %H:%M:%S")
     now = datetime.datetime.now()
     time_difference = (now - bestelldatum).total_seconds()
     return int(time_difference)
+
+# Neue Funktion zum Speichern der Zeitdifferenz und der aktuellen Uhrzeit im JSON-Datei
+def save_to_json(data):
+    filename = "zeitdifferenz.json"
+    zeitdifferenz_data = load_existing_data(filename)
+    
+    # Berechne die Zeitdifferenz
+    bestelldatum = datetime.datetime.strptime(data["Bestelldatum"], "%Y-%m-%d %H:%M:%S")
+    now = datetime.datetime.now()
+    time_difference = (now - bestelldatum).total_seconds()
+    data["Aktuelle Dauer und Uhrzeit"] = now.strftime("%Y-%m-%d %H:%M:%S")
+    data["Zeitdifferenz"] = int(time_difference)
+    
+    zeitdifferenz_data.append(data)
+    
+    with open(filename, "w") as json_file:
+        json.dump(zeitdifferenz_data, json_file)
 
 # Schaltfläche, um das Werkzeugnis zu generieren
 if st.button("Auftrag abgeschlossen und Bestellung zum Kunden verschickt"):
@@ -132,6 +66,9 @@ if st.button("Auftrag abgeschlossen und Bestellung zum Kunden verschickt"):
     with open(werkzeugnis_database_filename, "w") as db:
         for entry in existing_data:
             db.write(json.dumps(entry) + "\n")
+
+    # Neue Funktion aufrufen, um Zeitdifferenz und aktuelle Uhrzeit zu speichern
+    save_to_json(werkzeugnis_info)
 
     time_diff = timedifference(current_datetime)  # Berechnen der Zeitdifferenz
     st.write(f"Der Kundenauftrag wurde in {time_diff} Sekunden bearbeitet")
