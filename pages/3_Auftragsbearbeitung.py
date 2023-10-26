@@ -48,6 +48,8 @@ def save_to_json(data):
     
     with open(filename, "w") as json_file:
         json.dump(zeitdifferenz_data, json_file)
+# Vor der Verwendung von current_datetime sicherstellen, dass es definiert ist
+current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # Schaltfläche, um das Werkzeugnis zu generieren
 if st.button("Auftrag abgeschlossen und Bestellung zum Kunden verschickt"):
