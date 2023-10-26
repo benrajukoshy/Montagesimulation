@@ -51,7 +51,7 @@ def display_results():
                entry["Kundentakt"]
             ]   
 
-        styled_df = df.T.style.applymap(cooling_highlight, subset=[Führerhaus', 'Sidepipes', 'Container 1', 'Container 2', 'Container 3', 'Container 4'])
+        #styled_df = df.T.style.applymap(cooling_highlight, subset=[Führerhaus', 'Sidepipes', 'Container 1', 'Container 2', 'Container 3', 'Container 4'])
 
         st.dataframe(styled_df, use_container_width=True, height=530)
         
