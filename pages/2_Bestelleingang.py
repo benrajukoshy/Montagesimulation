@@ -55,7 +55,7 @@ def display_results():
         # Erzeuge eine Kopie des DataFrames, um die Textfarben hinzuzufügen
         styled_df = df.copy()
         for column in styled_df.columns:
-            styled_df[column] = styled_df[column].apply(change_color)
+            styled_df[row] = styled_df[row].apply(change_color)
 
         # Zeige die Tabelle mit den geänderten Textfarben an
         st.table(styled_df)
