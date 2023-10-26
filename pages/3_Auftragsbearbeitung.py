@@ -73,7 +73,7 @@ existing_data = load_existing_data(werkzeugnis_database_filename)
 # Automatisches Einfügen des ausgewählten Bestelldatums und der Uhrzeit
 bestellungen_database_filename = "bestellungen_database.json"
 bestellungen_data = load_existing_data(bestellungen_database_filename)
-selected_datetime = st.selectbox("Bestellung:", bestellungen_data)
+selected_datetime = st.checkbox("Bestellung:", bestellungen_data)
 current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 current_Kunde = selected_datetime["Kunde"]
 current_Sonderwunsch = selected_datetime["Sonderwunsch"]
