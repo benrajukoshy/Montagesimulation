@@ -33,46 +33,27 @@ def display_results():
 
     # Wenn Daten vorhanden sind, diese in einer Tabelle anzeigen
     if bestellungen_data:
-        df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit:", "Kunde:", "Auftragsnummer", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:", "Kundentakt"])
         # Erstellen eines leeren DataFrames mit den erforderlichen Spalten
-                
+        
+        df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit:", "Kunde:", "Auftragsnummer", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:", "Kundentakt"])
+        
+        
         for idx, entry in enumerate(bestellungen_data, start=1):
             df.loc[idx] = [
-               entry["Bestelldatum und Uhrzeit"],
-               entry["Kunde"],
-               entry["Auftragsnummer"],
-               entry["Sonderwunsch"],
-               entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
-               entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
-               entry["Variante nach Bestellung"].get("Container 1", "N/A"),
-               entry["Variante nach Bestellung"].get("Container 2", "N/A"),
-               entry["Variante nach Bestellung"].get("Container 3", "N/A"),
-               entry["Variante nach Bestellung"].get("Container 4", "N/A"),
-               entry["Kundentakt"]
-            ]   
-
-        #styled_df = df.T.style.applymap(cooling_highlight, subset=[Führerhaus', 'Sidepipes', 'Container 1', 'Container 2', 'Container 3', 'Container 4'])
-
-        st.dataframe(styled_df, use_container_width=True, height=530)
+                entry["Bestelldatum und Uhrzeit"],
+                entry["Kunde"],
+                entry["Auftragsnummer"],
+                entry["Sonderwunsch"],
+                entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
+                entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 1", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 2", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 3", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 4", "N/A"),
+                entry["Kundentakt"]
+            ]
         
- #####       
-        
-      # for idx, entry in enumerate(bestellungen_data, start=1):
-      #     df.loc[idx] = [
-      #         entry["Bestelldatum und Uhrzeit"],
-      #         entry["Kunde"],
-      #         entry["Auftragsnummer"],
-      #         entry["Sonderwunsch"],
-      #         entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
-      #         entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
-      #         entry["Variante nach Bestellung"].get("Container 1", "N/A"),
-      #         entry["Variante nach Bestellung"].get("Container 2", "N/A"),
-      #         entry["Variante nach Bestellung"].get("Container 3", "N/A"),
-      #         entry["Variante nach Bestellung"].get("Container 4", "N/A"),
-      #         entry["Kundentakt"]
-      #     ]
-      # 
-      # st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
+        st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
         
 
         #bestellungen_database_filename = "bestellungen_database.json"
