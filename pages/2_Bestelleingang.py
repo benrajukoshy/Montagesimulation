@@ -27,19 +27,18 @@ def display_results():
         
         df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit:", "Kunde:", "Auftragsnummer", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:", "Kundentakt"])
         
-        
         for idx, entry in enumerate(bestellungen_data, start=1):
             df.loc[idx] = [
                 entry["Bestelldatum und Uhrzeit"],
                 entry["Kunde"],
                 entry["Auftragsnummer"],
                 entry["Sonderwunsch"],
-                generate_colored_text(entry["Variante nach Bestellung"].get('Führerhaus', 'N/A')),
-                generate_colored_text(entry["Variante nach Bestellung"].get('Sidepipes', 'N/A')),
-                generate_colored_text(entry["Variante nach Bestellung"].get('Container 1', 'N/A')),
-                generate_colored_text(entry["Variante nach Bestellung"].get('Container 2', 'N/A')),
-                generate_colored_text(entry["Variante nach Bestellung"].get('Container 3', 'N/A')),
-                generate_colored_text(entry["Variante nach Bestellung"].get('Container 4', 'N/A')),
+                entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
+                entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 1", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 2", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 3", "N/A"),
+                entry["Variante nach Bestellung"].get("Container 4", "N/A"),
                 entry["Kundentakt"]
             ]
         
@@ -63,19 +62,6 @@ def display_results():
         
     else:
         st.write("Keine Bestellungen vorhanden.")
-        
-def generate_colored_text(text):
-    # Ersetzen Sie 'Blau', 'Rot', 'Grün', usw. durch entsprechende Farbcodes
-    color_map = {
-        'Blau': 'blue',
-        'Rot': 'red',
-        'Grün': 'green',
-        # Fügen Sie weitere Farben hinzu, falls erforderlich
-    }
-    for color, color_code in color_map.items():
-        text = text.replace(color, f"<span style='color: {color_code}'>{color}</span>")
-    return text
-        
 
 if __name__ == '__main__':
     display_results()
