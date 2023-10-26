@@ -3,7 +3,6 @@ import datetime
 import time
 import json
 import pandas as pd
-import csv
 import os
 
 st.markdown("# Auftrag abschließen ✏️")
@@ -82,7 +81,5 @@ if st.button("Auftrag abgeschlossen und Bestellung zum Kunden verschickt"):
     # Anzeigen des DataFrames
     st.write("Alle Werkzeugnisse:")
     st.dataframe(df)
-    # Speichern der Daten in der CSV-Datei
-    save_to_csv(existing_data)
     # Laden der bestehenden Werkzeugnisdaten aus der JSON-Datei
     st.experimental_rerun()
