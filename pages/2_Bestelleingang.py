@@ -13,6 +13,16 @@ st.sidebar.markdown("# Aufträge 🚀")
 # Dateiname der Datenbank
 database_filename = "bestellungen_database.json"
 
+def cooling_highlight(val):
+    colors = {
+        'Blau': '#ACE5EE',
+        'Gelb': '#FFFF00',
+        'Rot': '#FF0000',
+    }
+    return f'background-color: {colors.get(val, "white")}'
+
+
+
 def display_results():
     # Laden der Werkzeugnisdaten aus der JSON-Datei
     bestellungen_data = []
@@ -27,22 +37,44 @@ def display_results():
         
         df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit:", "Kunde:", "Auftragsnummer", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:", "Kundentakt"])
         
+        
         for idx, entry in enumerate(bestellungen_data, start=1):
             df.loc[idx] = [
-                entry["Bestelldatum und Uhrzeit"],
-                entry["Kunde"],
-                entry["Auftragsnummer"],
-                entry["Sonderwunsch"],
-                entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
-                entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
-                entry["Variante nach Bestellung"].get("Container 1", "N/A"),
-                entry["Variante nach Bestellung"].get("Container 2", "N/A"),
-                entry["Variante nach Bestellung"].get("Container 3", "N/A"),
-                entry["Variante nach Bestellung"].get("Container 4", "N/A"),
-                entry["Kundentakt"]
-            ]
+               entry["Bestelldatum und Uhrzeit"],
+               entry["Kunde"],
+               entry["Auftragsnummer"],
+               entry["Sonderwunsch"],
+               entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
+               entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
+               entry["Variante nach Bestellung"].get("Container 1", "N/A"),
+               entry["Variante nach Bestellung"].get("Container 2", "N/A"),
+               entry["Variante nach Bestellung"].get("Container 3", "N/A"),
+               entry["Variante nach Bestellung"].get("Container 4", "N/A"),
+               entry["Kundentakt"]
+            ]   
+
+        styled_df = df.T.style.applymap(cooling_highlight, subset=[Führerhaus', 'Sidepipes', 'Container 1', 'Container 2', 'Container 3', 'Container 4'])
+
+        st.dataframe(styled_df, use_container_width=True, height=530)
         
-        st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
+ #####       
+        
+      # for idx, entry in enumerate(bestellungen_data, start=1):
+      #     df.loc[idx] = [
+      #         entry["Bestelldatum und Uhrzeit"],
+      #         entry["Kunde"],
+      #         entry["Auftragsnummer"],
+      #         entry["Sonderwunsch"],
+      #         entry["Variante nach Bestellung"].get("Führerhaus", "N/A"),
+      #         entry["Variante nach Bestellung"].get("Sidepipes", "N/A"),
+      #         entry["Variante nach Bestellung"].get("Container 1", "N/A"),
+      #         entry["Variante nach Bestellung"].get("Container 2", "N/A"),
+      #         entry["Variante nach Bestellung"].get("Container 3", "N/A"),
+      #         entry["Variante nach Bestellung"].get("Container 4", "N/A"),
+      #         entry["Kundentakt"]
+      #     ]
+      # 
+      # st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
         
 
         #bestellungen_database_filename = "bestellungen_database.json"
