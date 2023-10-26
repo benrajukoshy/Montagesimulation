@@ -12,16 +12,7 @@ st.sidebar.markdown("# Aufträge 🚀")
 
 # Dateiname der Datenbank
 database_filename = "bestellungen_database.json"
-def change_color(text):
-    if text == "Blau":
-        return "color: blue"
-    elif text == "Grün":
-        return "color: green"
-    elif text == "Gelb":
-        return "color: yellow"
-    else:
-        return ""
-        
+
 def display_results():
     # Laden der Werkzeugnisdaten aus der JSON-Datei
     bestellungen_data = []
@@ -52,13 +43,7 @@ def display_results():
             ]
         
         st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
-        # Erzeuge eine Kopie des DataFrames, um die Textfarben hinzuzufügen
-        styled_df = df.copy()
-        for column in styled_df.columns:
-            styled_df[row] = styled_df[row].apply(change_color)
-
-        # Zeige die Tabelle mit den geänderten Textfarben an
-        st.table(styled_df)
+        
 
         #bestellungen_database_filename = "bestellungen_database.json"
         #bestellungen_data = display_results(bestellungen_database_filename)
