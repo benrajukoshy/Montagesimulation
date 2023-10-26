@@ -6,7 +6,7 @@ import os
 # Funktion zum Laden der Daten aus der CSV-Datei
 def load_data():
     try:
-        data = pd.read_csv("bearbeitsungsstatus.csv")
+        data = pd.read_csv("bearbeitsungsstatus.csv", encoding='ISO-8859-1')
         return data
     except FileNotFoundError:
         return None
@@ -41,6 +41,5 @@ if data is not None:
         x='Kunde:N',
         y='Zeitdifferenz:Q',
         color=alt.value('steelblue')
-        
     )
     st.altair_chart(chart, use_container_width=True)
