@@ -73,13 +73,26 @@ existing_data = load_existing_data(werkzeugnis_database_filename)
 # Automatisches Einfügen des ausgewählten Bestelldatums und der Uhrzeit
 bestellungen_database_filename = "bestellungen_database.json"
 bestellungen_data = load_existing_data(bestellungen_database_filename)
-selected_datetime = st.checkbox("Bestellung:", bestellungen_data)
-current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+# Erstellen einer Liste von Optionen für die selectbox mit Auftragsdatum und Kundenname
+selectbox_options = [f"{entry['Bestelldatum und Uhrzeit']} - {entry['Kunde']}" for entry in bestellungen_data]
+
+# Lassen Sie den Benutzer auswählen
+selected_option = st.selectbox("Bestellung:", selectbox_options, 0)  # 0 ist der Standardindex
+
+# Extrahieren von Auftragsdatum und Kundenname aus der ausgewählten Option
+selected_index = selectbox_options.index(selected_option)
+selected_datetime = bestellungen_data[selected_index]
+current_datetime = selected_datetime["Bestelldatum und Uhrzeit"]
 current_Kunde = selected_datetime["Kunde"]
-current_Sonderwunsch = selected_datetime["Sonderwunsch"]
-current_Varianten = selected_datetime["Variante nach Bestellung"]
-current_Kundentakt = selected_datetime["Kundentakt"]
+
+# Restliche Daten extrahieren
+current_Sonderwunsch = selected_datetime.get("Sonderwunsch", "N/A")
+current_Varianten = selected_datetime.get("Variante nach Bestellung", "N/A")
+current_Kundentakt = selected_datetime.get("Kundentakt", "N/A")
+
 st.write(f"Bestellung vom: {current_datetime}")
+
 
 # Kundenname
 #last_customer_name = existing_data[-1]["Kunde"] if existing_data else "Bitte Kundennamen eingeben"
