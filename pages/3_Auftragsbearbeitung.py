@@ -53,6 +53,7 @@ def save_to_json(data):
 
 bestellungen_data = load_existing_data(bestellungen_database_filename)
 # Definieren von current_datetime unter Verwendung der bestellungen_data
+selected_datetime = bestellungen_data[0] if bestellungen_data else {"Bestelldatum und Uhrzeit": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
