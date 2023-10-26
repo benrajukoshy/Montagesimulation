@@ -2,6 +2,7 @@ import streamlit as st
 import json
 import time
 import pandas as pd
+import numpy as np
 
 # Setze Streamlit-Option für die Spaltenbreite
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -12,6 +13,16 @@ st.sidebar.markdown("# Aufträge 🚀")
 
 # Dateiname der Datenbank
 database_filename = "bestellungen_database.json"
+
+def change_color(text):
+    if text == "Blau":
+        return "color: blue"
+    elif text == "Grün":
+        return "color: green"
+    elif text == "Gelb":
+        return "color: yellow"
+    else:
+        return ""
 
 def display_results():
     # Laden der Werkzeugnisdaten aus der JSON-Datei
@@ -24,7 +35,6 @@ def display_results():
     # Wenn Daten vorhanden sind, diese in einer Tabelle anzeigen
     if bestellungen_data:
         # Erstellen eines leeren DataFrames mit den erforderlichen Spalten
-        
         df = pd.DataFrame(columns=["Bestelldatum und Uhrzeit:", "Kunde:", "Auftragsnummer", "Sonderwunsch:", "Führerhaus:", "Sidepipes:", "Container 1:", "Container 2:", "Container 3:", "Container 4:", "Kundentakt"])
         
         for idx, entry in enumerate(bestellungen_data, start=1):
@@ -41,12 +51,15 @@ def display_results():
                 entry["Variante nach Bestellung"].get("Container 4", "N/A"),
                 entry["Kundentakt"]
             ]
-        
-        st.dataframe(df.T, use_container_width= True)  # Transponieren des DataFrames und Anzeigen als Tabelle
-        
 
-        #bestellungen_database_filename = "bestellungen_database.json"
-        #bestellungen_data = display_results(bestellungen_database_filename)
+        # Erzeuge eine Kopie des DataFrames, um die Textfarben hinzuzufügen
+        styled_df = df.copy()
+        for column in styled_df.columns:
+            styled_df[column] = styled_df[column].apply(change_color)
+
+        # Zeige die Tabelle mit den geänderten Textfarben an
+        st.table(styled_df)
+
         df["Kundentakt"] = df["Kundentakt"].apply(int)
         
         st.write("Wenn für bestimmte Bestandteile keine Farbangaben gemacht wurden, dann können diese frei gewählt werden")
