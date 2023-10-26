@@ -10,7 +10,7 @@ st.sidebar.markdown("# Auftrag abschließen ✏️")
 st.write("Qualitätskontrolle und Versandt")
 
 werkzeugnis_database_filename = "werkzeugnis_database.json"
-
+bestellungen_database_filename = "bestellungen_database.json"
 # Laden der bestehenden Werkzeugnisdaten aus der JSON-Datei
 def load_existing_data(filename):
     try:
@@ -49,7 +49,12 @@ def save_to_json(data):
     with open(filename, "w") as json_file:
         json.dump(zeitdifferenz_data, json_file)
 # Vor der Verwendung von current_datetime sicherstellen, dass es definiert ist
+# Laden der bestehenden Bestelldaten
+
+bestellungen_data = load_existing_data(bestellungen_database_filename)
+# Definieren von current_datetime unter Verwendung der bestellungen_data
 current_datetime = selected_datetime["Bestelldatum und Uhrzeit"] if bestellungen_data else datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 
 # Schaltfläche, um das Werkzeugnis zu generieren
 if st.button("Auftrag abgeschlossen und Bestellung zum Kunden verschickt"):
