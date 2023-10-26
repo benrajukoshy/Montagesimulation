@@ -150,8 +150,8 @@ if st.button("Auftrag abgeschlossen und Bestellung zum Kunden verschickt"):
     df.set_index("Kunde", inplace=True)
 
     # Anzeigen des DataFrames
-    st.write("Alle Werkzeugnisse:")
-    st.dataframe(df)
+    #st.write("Alle Werkzeugnisse:")
+    #st.dataframe(df)
     # Speichern der Daten in der CSV-Datei
     save_to_csv(existing_data)
     # Laden der bestehenden Werkzeugnisdaten aus der JSON-Datei
